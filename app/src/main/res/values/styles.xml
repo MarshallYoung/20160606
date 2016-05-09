@@ -1,0 +1,52 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- 透明按钮 -->
+    <style name="Button_Transparent">
+        <item name="android:background">#00ffffff</item>
+        <item name="android:textColor">@color/selector_button_transparent</item>
+        <item name="android:textSize">@dimen/textsize_button</item>
+    </style>
+
+    <!-- 导航栏按钮 -->
+    <style name="Button_Toolbar">
+        <item name="android:background">#00ffffff</item>
+        <item name="android:textColor">@color/selector_button_toolbar</item>
+        <item name="android:textSize">@dimen/textsize_toolbar</item>
+    </style>
+
+    <!-- 蓝色按钮 -->
+    <style name="Button_Blue">
+        <item name="android:background">@drawable/selector_btn_blue</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize_button</item>
+    </style>
+
+    <!-- 红色按钮 -->
+    <style name="Button_Red">
+        <item name="android:background">@drawable/selector_btn_red</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textsize_button</item>
+    </style>
+
+    <!-- 计算器按钮 -->
+    <style name="Button_Calculator" parent="Button_Blue">
+        <item name="android:textSize">@dimen/textsize_calculator</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+
+    <!-- 文字 -->
+    <style name="Text_Base">
+        <item name="android:textSize">@dimen/textsize_text</item>
+        <item name="android:textColor">@color/gray_text</item>
+    </style>
+
+</resources>
