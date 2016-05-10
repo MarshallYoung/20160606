@@ -2,10 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_background"
     android:orientation="vertical">
-
-    <include layout="@layout/item_toolbar_withbutton" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,11 +21,12 @@
             android:text="手机号" />
 
         <EditText
-            android:id="@+id/edt_mobilephone"
+            android:id="@+id/edt_mobile_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="输入手机号" />
+            android:hint="输入手机号"
+            android:lines="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,26 +44,21 @@
             android:text="验证码" />
 
         <EditText
-            android:id="@+id/edt_verification"
+            android:id="@+id/edt_verification_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:gravity="center"
             android:hint="输入验证码"
-            android:inputType="textPassword" />
+            android:inputType="number"
+            android:lines="1" />
 
         <Button
+            android:id="@+id/btn_get_verification"
             style="@style/Button_Transparent"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:text="获取验证码" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_next"
-        style="@style/Button_Blue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="下一步" />
 </LinearLayout>

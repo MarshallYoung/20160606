@@ -34,6 +34,7 @@ public class FunctionAdapter extends BaseAdapter {
         this.itemList = itemList;
     }
 
+    @SuppressWarnings("unused")
     private FunctionAdapter() {
     }
 

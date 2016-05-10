@@ -54,6 +54,7 @@ public class CalculatorFragment extends Fragment {
     }
 
     // 数字按钮的执行方法
+    @SuppressWarnings("unused")
     @OnClick({R.id.calculator_0, R.id.calculator_1, R.id.calculator_2, R.id.calculator_3,
             R.id.calculator_4, R.id.calculator_5, R.id.calculator_6,
             R.id.calculator_7, R.id.calculator_8, R.id.calculator_9})
@@ -69,6 +70,7 @@ public class CalculatorFragment extends Fragment {
     }
 
     // 清除
+    @SuppressWarnings("unused")
     @OnClick(R.id.calculator_c)
     void onClick3(View view) {
         tv_result.setText("0.00");
@@ -76,6 +78,7 @@ public class CalculatorFragment extends Fragment {
     }
 
     // 后退
+    @SuppressWarnings("unused")
     @OnClick(R.id.calculator_back)
     void onClick4(View view) {
         String string = String.format("%.3f", amount / 10);
@@ -85,6 +88,7 @@ public class CalculatorFragment extends Fragment {
     }
 
     // 刷卡
+    @SuppressWarnings("unused")
     @OnClick(R.id.calculator_cash)
     void onClick2(View view) {
         Toast.makeText(getContext(), "刷卡", Toast.LENGTH_SHORT).show();

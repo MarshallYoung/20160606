@@ -1,16 +1,15 @@
 package com.yusys.mpos.login.ui;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import com.yusys.mpos.security.ui.SetPasswordFragment;
+import com.yusys.mpos.security.ui.VerificationCodeFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,12 +25,9 @@ public class RegisterActivity extends Activity {
 
     @Bind(R.id.toolbar_title)
     TextView toolbar_title;
-    @Bind(R.id.toolbar_back)
-    View btn_back;
-    @Bind(R.id.edt_verification)
-    EditText edt_verification;// 验证码
-    @Bind(R.id.btn_get_verification)
-    Button btn_getVerification;// 获取验证码
+    FragmentManager fragmentManager;
+    VerificationCodeFragment verificationCodeFragment;
+    SetPasswordFragment setPasswordFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +35,9 @@ public class RegisterActivity extends Activity {
 
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        fragmentManager = getFragmentManager();
+        verificationCodeFragment = new VerificationCodeFragment();
+        setPasswordFragment = new SetPasswordFragment();
         initView();
     }
 
@@ -50,6 +49,10 @@ public class RegisterActivity extends Activity {
 
     void initView() {
         toolbar_title.setText("注册");
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.animator.slide_in_from_bottom, R.animator.slide_out_to_top);
+        transaction.replace(R.id.frame_content, verificationCodeFragment);
+        transaction.commit();
     }
 
     // 后退
@@ -60,36 +63,14 @@ public class RegisterActivity extends Activity {
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 
-    // 获取验证码
+    // 下一步
     @SuppressWarnings("unused")
-    @OnClick(R.id.btn_get_verification)
-    void getVerification() {
-        btn_getVerification.setEnabled(false);
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            int i = 10;
-
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        btn_getVerification.setText(i + "秒");
-                    }
-                });
-                i--;
-                if (i <= 0) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            btn_getVerification.setEnabled(true);
-                            btn_getVerification.setText("获取验证码");
-                            timer.cancel();
-                        }
-                    });
-                }
-            }
-        }, 1000, 1000);
+    @OnClick(R.id.btn_next_step)
+    void nextStep(View view) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.animator.slide_in_from_bottom, R.animator.slide_out_to_top);
+        transaction.hide(verificationCodeFragment).add(R.id.frame_content, setPasswordFragment);
+        transaction.commit();
     }
 
 }

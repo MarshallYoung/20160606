@@ -28,7 +28,7 @@ public class PasswordManageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_password_manage);
+        setContentView(null);
         ButterKnife.bind(this);
         initView();
     }
@@ -43,6 +43,7 @@ public class PasswordManageActivity extends Activity {
         toolbar_title.setText("安全管理");
     }
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.toolbar_back)
     void onClick(View view) {
         finish();

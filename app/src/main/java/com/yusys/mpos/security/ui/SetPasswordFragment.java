@@ -1,39 +1,37 @@
-package com.yusys.mpos.me.ui;
+package com.yusys.mpos.security.ui;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.login.ui.LoginActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
- * 我
+ * 设置密码
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-06 17:26
+ * @date 2016-05-10 11:29
  */
-public class MeFragment extends Fragment {
+public class SetPasswordFragment extends Fragment {
 
     private View fragmentView;
-    @Bind(R.id.toolbar_title)
-    TextView toolbar_title;
+    @Bind(R.id.edt_password)
+    public EditText edt_password;// 密码
+    @Bind(R.id.edt_confirm_password)
+    public EditText edt_confirm_password;// 确认密码
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
-            fragmentView = inflater.inflate(R.layout.fragment_me,
+            fragmentView = inflater.inflate(R.layout.fragment_set_password,
                     container, false);
             ButterKnife.bind(this, fragmentView);
-            toolbar_title.setText("我");
         }
         // 缓存Fragment,避免重新执行onCreateView
         ViewGroup parentView = (ViewGroup) fragmentView.getParent();
@@ -47,15 +45,6 @@ public class MeFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    @SuppressWarnings("unused")
-    @OnClick(R.id.btn_exit)
-    void exit(View view) {
-        Intent intent = new Intent(this.getActivity(), LoginActivity.class);
-        startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
-        getActivity().finish();
     }
 
 }
