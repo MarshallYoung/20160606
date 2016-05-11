@@ -1,4 +1,4 @@
-package com.yusys.mpos.me.ui;
+package com.yusys.mpos.main.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

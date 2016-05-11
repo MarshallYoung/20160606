@@ -33,6 +33,11 @@ public class VerificationCodeFragment extends Fragment {
     @Bind(R.id.btn_get_verification)
     public Button btn_getVerification;// 获取验证码
 
+    public int operation;
+    public static final int OPERATION_REGISTER = 1;// 注册
+    public static final int OPERATION_FIND_PASSWORD = 2;// 找回密码
+    public static final int OPERATION_RESET_PASSWORD = 3;// 重置密码
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {

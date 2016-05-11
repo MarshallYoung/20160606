@@ -1,4 +1,4 @@
-package com.yusys.mpos.me.ui;
+package com.yusys.mpos.security.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

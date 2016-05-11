@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 登录界面
+ * 登录
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
  * @date 2016-04-01
@@ -61,11 +61,6 @@ public class LoginActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -113,7 +108,6 @@ public class LoginActivity extends BaseActivity {
                 return false;
             }
         });
-
     }
 
     @SuppressWarnings("unused")
@@ -128,17 +122,26 @@ public class LoginActivity extends BaseActivity {
         preferences.edit().putString(Preferences.USERNAME, username).apply();
     }
 
+    // 注册
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_register)
-    void register(View view) {// 注册
+    void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
     }
 
+    // 找回密码
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_forget_password)
+    void findPassword(View view) {
+        // TODO 找回密码
+    }
+
+    // 登录
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_login)
-    void login(View view) {// 登录
+    void login(View view) {
         String username = edt_username.getText().toString().trim();
         if (username.isEmpty()) {// 用户名为空
             Toast.makeText(this, Notes.EMPTY_USERNAME, Toast.LENGTH_SHORT).show();

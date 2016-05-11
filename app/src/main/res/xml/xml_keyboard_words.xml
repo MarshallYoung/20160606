@@ -131,5 +131,4 @@
             android:keyLabel="完成"
             android:keyWidth="20%p" />
     </Row>
-
 </Keyboard>

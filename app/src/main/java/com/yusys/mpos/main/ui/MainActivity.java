@@ -10,7 +10,6 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.me.ui.MeFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

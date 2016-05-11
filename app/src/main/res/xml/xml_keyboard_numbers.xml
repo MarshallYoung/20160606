@@ -63,5 +63,4 @@
             android:codes="-5"
             android:keyIcon="@drawable/keyboard_delete" />
     </Row>
-
 </Keyboard>
