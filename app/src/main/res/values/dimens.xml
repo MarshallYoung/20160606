@@ -2,12 +2,18 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="icon_length">30dp</dimen>
     <dimen name="icon_margin">2dp</dimen>
-    <!-- 导航栏 -->
-    <dimen name="toolbar_height">54dp</dimen>
+    <!-- 边长 -->
+    <dimen name="length_option_icon">30dp</dimen>
+    <!-- 高度 -->
+    <dimen name="height_button">48dp</dimen>
+    <dimen name="height_toolbar">54dp</dimen>
     <!-- 字号 -->
     <dimen name="textsize_button">20sp</dimen>
+    <dimen name="textsize_option">24sp</dimen>
     <dimen name="textsize_toolbar_title">20sp</dimen>
     <dimen name="textsize_toolbar">18sp</dimen>
     <dimen name="textsize_text">18sp</dimen>
     <dimen name="textsize_calculator">30sp</dimen>
+    <!-- 间距 -->
+    <dimen name="margin_side">10dp</dimen>
 </resources>

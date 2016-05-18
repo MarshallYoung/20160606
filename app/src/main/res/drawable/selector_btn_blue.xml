@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/shape_btn_blue_pressed" android:state_pressed="true" />
-    <item android:drawable="@drawable/shape_btn_blue" />
+    <!-- 点击背景 -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/blue_button_background_pressed" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+    <!-- 普通状态背景 -->
+    <item>
+        <shape>
+            <solid android:color="@color/blue_button_background" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
 </selector>

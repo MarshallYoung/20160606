@@ -9,7 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.util.DeviceUtil;
+import com.yusys.mpos.base.manager.DeviceManager;
 import com.yusys.mpos.login.ui.LoginActivity;
 
 import org.kymjs.kjframe.http.KJAsyncTask;
@@ -31,7 +31,7 @@ public class StartActivity extends Activity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         final View view = View.inflate(this, R.layout.activity_start, null);
@@ -57,11 +57,16 @@ public class StartActivity extends Activity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         int cacheVersion = PreferenceHelper.readInt(this, "first_install",
                 "first_install", -1);
-        int currentVersion = DeviceUtil.getVersionCode();
+        int currentVersion = DeviceManager.getVersionCode();
         if (cacheVersion < currentVersion) {
             PreferenceHelper.write(this, "first_install", "first_install",
                     currentVersion);

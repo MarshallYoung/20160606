@@ -8,4 +8,6 @@
     <string name="password">密码</string>
     <string name="remember_username">记住用户名</string>
     <string name="forget_password">忘记密码</string>
+    <string name="homepage">主页</string>
+    <string name="function">功能</string>
 </resources>

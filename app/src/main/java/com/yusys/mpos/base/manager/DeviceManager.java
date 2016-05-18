@@ -1,4 +1,4 @@
-package com.yusys.mpos.base.util;
+package com.yusys.mpos.base.manager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import java.io.File;
 /**
  * 设备信息
  */
-public class DeviceUtil {
+public class DeviceManager {
 
     /**
      * 得到设备屏幕参数
@@ -148,5 +148,4 @@ public class DeviceUtil {
                 "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
-
 }

@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.YXApplication;
-import com.yusys.mpos.base.util.LogUtil;
+import com.yusys.mpos.base.manager.LogManager;
 
 import java.util.List;
 
@@ -169,7 +169,7 @@ public class KeyboardManager {
         }
         this.target = target;
         inputType = target.getInputType();
-        LogUtil.e("自定义虚拟键盘初始化,inputType:" + inputType);
+        LogManager.e("自定义虚拟键盘初始化,inputType:" + inputType);
         target.setInputType(InputType.TYPE_NULL);// 强制隐藏系统默认软键盘
         if (rootActivity != target.getContext()) {// 得到新的根视图
             rootActivity = (Activity) target.getContext();

@@ -3,8 +3,6 @@ package com.yusys.mpos.base.manager;
 import android.app.Activity;
 import android.content.Context;
 
-import com.yusys.mpos.base.util.LogUtil;
-
 import java.util.Stack;
 
 /**
@@ -119,8 +117,7 @@ public class AppManager {
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(0);
         } catch (Exception e) {
-            LogUtil.e(e.toString());
+            LogManager.e("==app退出异常==", e.toString());
         }
     }
-
 }

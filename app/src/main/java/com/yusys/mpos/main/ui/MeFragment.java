@@ -49,6 +49,16 @@ public class MeFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
+    /**
+     * 安全管理
+     */
+    @SuppressWarnings("unused")
+    @OnClick(R.id.ll_security_manage)
+    void securityManage(View view) {
+        Intent intent = new Intent(this.getActivity(), LoginActivity.class);
+        startActivity(intent);
+    }
+
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_exit)
     void exit(View view) {

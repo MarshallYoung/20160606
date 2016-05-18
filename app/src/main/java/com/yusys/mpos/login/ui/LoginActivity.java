@@ -50,7 +50,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);// 注解绑定控件的框架
         preferences = getSharedPreferences(Preferences.FILENAME, MODE_PRIVATE);

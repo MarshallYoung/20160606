@@ -7,11 +7,11 @@
     android:orientation="vertical"
     android:padding="25dp">
 
-
     <ImageView
         android:id="@+id/function_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/function"
         android:src="@drawable/weather" />
 
     <TextView
@@ -19,5 +19,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="功能" />
+        android:text="@string/function" />
 </LinearLayout>
