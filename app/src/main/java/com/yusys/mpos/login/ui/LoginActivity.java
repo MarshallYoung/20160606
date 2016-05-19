@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * 登录
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-01
+ * @since 2016-04-01
  */
 public class LoginActivity extends BaseActivity {
 
@@ -162,5 +162,4 @@ public class LoginActivity extends BaseActivity {
         overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         finish();
     }
-
 }

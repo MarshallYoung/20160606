@@ -4,7 +4,7 @@ package com.yusys.mpos.base.manager;
  * 调试管理者,管理调试信息,或者调试功能
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-17 09:37
+ * @since 2016-05-17 09:37
  */
 public class DebugManager {
 

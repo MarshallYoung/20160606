@@ -4,7 +4,7 @@ package com.yusys.mpos.base.manager;
  * 动画管理器
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-10 16:03
+ * @since 2016-05-10 16:03
  */
 public class AnimatoinManager {
 

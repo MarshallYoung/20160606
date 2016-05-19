@@ -8,7 +8,7 @@ import com.yusys.mpos.base.manager.AppManager;
  * Application
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-03-16
+ * @since 2016-03-16
  */
 public class YXApplication extends Application {
 
@@ -25,5 +25,4 @@ public class YXApplication extends Application {
     public static YXApplication getInstance() {
         return instance;
     }
-
 }

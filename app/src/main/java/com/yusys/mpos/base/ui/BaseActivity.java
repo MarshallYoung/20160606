@@ -11,7 +11,7 @@ import com.yusys.mpos.base.YXApplication;
  * Activity基类
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-03-16
+ * @since 2016-03-16
  */
 @SuppressLint("Registered")
 public class BaseActivity extends Activity {
@@ -39,5 +39,4 @@ public class BaseActivity extends Activity {
             YXApplication.getInstance().appManager.AppExit(this);
         }
     }
-
 }

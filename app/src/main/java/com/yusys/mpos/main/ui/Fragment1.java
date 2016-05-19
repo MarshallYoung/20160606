@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * 测试界面
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-06 17:26
+ * @since 2016-04-06 17:26
  */
 public class Fragment1 extends Fragment {
 
@@ -124,5 +124,4 @@ public class Fragment1 extends Fragment {
             });
         }
     }
-
 }

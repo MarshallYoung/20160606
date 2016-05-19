@@ -22,7 +22,7 @@ import java.io.File;
  * 应用启动界面
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-01
+ * @since 2016-04-01
  */
 public class StartActivity extends Activity {
 
@@ -43,7 +43,7 @@ public class StartActivity extends Activity {
         aa.setAnimationListener(new AnimationListener() {
             @Override
             public void onAnimationEnd(Animation arg0) {
-                redirectTo();
+                redirectToLogin();
             }
 
             @Override
@@ -89,12 +89,12 @@ public class StartActivity extends Activity {
     /**
      * 跳转到...
      */
-    private void redirectTo() {
+
+    private void redirectToLogin() {
 //        Intent uploadLog = new Intent(this, LogUploadService.class);
 //        startService(uploadLog);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
-
 }

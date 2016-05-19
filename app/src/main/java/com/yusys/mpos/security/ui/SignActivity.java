@@ -6,28 +6,35 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
+import com.yusys.mpos.base.widget.SignBoard;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 安全管理(密码管理),修改各种密码的界面
+ * 签名
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @since 2016-05-06 14:28
+ * @since 2016-05-19 14:25
  */
-public class PasswordManageActivity extends Activity {
+public class SignActivity extends Activity {
 
     @Bind(R.id.toolbar_title)
     TextView toolbar_title;
+    @Bind(R.id.sign_board)
+    SignBoard signBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(null);
+        setContentView(R.layout.activity_sign);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initView();
     }
 
@@ -37,14 +44,16 @@ public class PasswordManageActivity extends Activity {
         ButterKnife.unbind(this);
     }
 
-    void initView() {
-        toolbar_title.setText("安全管理");
+    private void initView() {
+        toolbar_title.setText("签字");
     }
 
+    /**
+     * 清空
+     */
     @SuppressWarnings("unused")
-    @OnClick(R.id.toolbar_back)
-    void onClick(View view) {
-        finish();
-        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    @OnClick(R.id.btn_clear)
+    void clear(View view) {
+        signBoard.removeAllPaint();
     }
 }

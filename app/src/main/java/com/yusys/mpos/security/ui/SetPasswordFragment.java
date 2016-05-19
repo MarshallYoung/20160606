@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  * 设置密码
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-10 11:29
+ * @since 2016-05-10 11:29
  */
 public class SetPasswordFragment extends Fragment {
 
@@ -46,5 +46,4 @@ public class SetPasswordFragment extends Fragment {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
-
 }

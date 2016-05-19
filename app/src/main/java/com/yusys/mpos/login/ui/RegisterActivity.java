@@ -19,7 +19,7 @@ import butterknife.OnClick;
  * 注册
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-05 14:52
+ * @since 2016-05-05 14:52
  */
 public class RegisterActivity extends Activity {
 
@@ -72,5 +72,4 @@ public class RegisterActivity extends Activity {
         transaction.hide(verificationCodeFragment).add(R.id.frame_content, setPasswordFragment);
         transaction.commit();
     }
-
 }

@@ -6,7 +6,7 @@ import com.yusys.mpos.base.bean.YXRequest;
  * 商户认证
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-11 17:48
+ * @since 2016-05-11 17:48
  */
 public class MerchantApproveRequest extends YXRequest {
 
@@ -46,5 +46,4 @@ public class MerchantApproveRequest extends YXRequest {
      * 终端编号
      */
     public String terminalId;
-
 }

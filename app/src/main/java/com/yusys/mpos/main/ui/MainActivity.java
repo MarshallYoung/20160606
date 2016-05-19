@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  * 主界面
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-06 17:16
+ * @since 2016-04-06 17:16
  */
 public class MainActivity extends FragmentActivity {
 
@@ -69,5 +69,4 @@ public class MainActivity extends FragmentActivity {
         textView.setText(titles[index]);
         return root;
     }
-
 }

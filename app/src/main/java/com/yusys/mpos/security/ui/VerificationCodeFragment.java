@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * 获取手机验证码
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-10 11:29
+ * @since 2016-05-10 11:29
  */
 public class VerificationCodeFragment extends Fragment {
 
@@ -90,5 +90,4 @@ public class VerificationCodeFragment extends Fragment {
             }
         }, 1000, 1000);
     }
-
 }

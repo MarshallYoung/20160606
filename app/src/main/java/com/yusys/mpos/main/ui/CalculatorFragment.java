@@ -19,7 +19,7 @@ import butterknife.OnClick;
  * 计算器
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-06 17:26
+ * @since 2016-04-06 17:26
  */
 public class CalculatorFragment extends Fragment {
 
@@ -93,5 +93,4 @@ public class CalculatorFragment extends Fragment {
     void onClick2(View view) {
         Toast.makeText(getContext(), "刷卡", Toast.LENGTH_SHORT).show();
     }
-
 }

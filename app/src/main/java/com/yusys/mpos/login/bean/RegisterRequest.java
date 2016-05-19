@@ -6,7 +6,7 @@ import com.yusys.mpos.base.bean.YXRequest;
  * 注册请求
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-11 16:31
+ * @since 2016-05-11 16:31
  */
 public class RegisterRequest extends YXRequest {
 
@@ -22,5 +22,4 @@ public class RegisterRequest extends YXRequest {
      * 密码
      */
     public String password;
-
 }

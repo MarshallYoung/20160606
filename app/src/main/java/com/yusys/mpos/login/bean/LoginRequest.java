@@ -3,8 +3,10 @@ package com.yusys.mpos.login.bean;
 import com.yusys.mpos.base.bean.YXRequest;
 
 /**
+ * 登录请求
+ *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-11 16:59
+ * @since 2016-05-11 16:59
  */
 public class LoginRequest extends YXRequest {
 
@@ -20,5 +22,4 @@ public class LoginRequest extends YXRequest {
      * 手机唯一标志符,uuid
      */
     public String identify;
-
 }

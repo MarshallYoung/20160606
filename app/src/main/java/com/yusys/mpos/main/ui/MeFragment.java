@@ -19,7 +19,7 @@ import butterknife.OnClick;
  * 我
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-04-06 17:26
+ * @since 2016-04-06 17:26
  */
 public class MeFragment extends Fragment {
 
@@ -67,5 +67,4 @@ public class MeFragment extends Fragment {
         getActivity().overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
         getActivity().finish();
     }
-
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * 功能列表的适配器,用于functionFragment的gridView
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @date 2016-05-04 15:35
+ * @since 2016-05-04 15:35
  */
 public class FunctionAdapter extends BaseAdapter {
 
@@ -78,5 +78,4 @@ public class FunctionAdapter extends BaseAdapter {
         ImageView imageView;
         TextView textView;
     }
-
 }
