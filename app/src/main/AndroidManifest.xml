@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -21,6 +20,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -28,10 +29,20 @@
     <application
         android:name=".base.YXApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="ORLBGpCWiAb1pdMdeAPCseQkM0PG5kYf" />
+
         <activity
             android:name=".base.StartActivity"
             android:label="@string/app_name">
@@ -43,14 +54,40 @@
         <!-- 登录 -->
         <activity android:name=".login.ui.LoginActivity" />
         <!-- 注册 -->
-        <activity android:name=".login.ui.RegisterActivity" />
+        <activity android:name=".register.ui.RegisterActivity" />
         <!-- 主界面 -->
-        <activity android:name=".main.ui.MainActivity" />
-        <!-- 拍照 -->
-        <activity android:name=".merchant.ui.TakePhotoActivity" />
+        <activity
+            android:name=".main.ui.MainActivity"
+            android:launchMode="singleTask" />
         <!-- 签名 -->
         <activity
             android:name=".security.ui.SignActivity"
             android:screenOrientation="landscape" />
+        <!-- 支付 -->
+        <activity android:name=".pay.ui.PayActivity" />
+        <!-- 联迪 -->
+        <activity android:name=".pay.ui.LandiActivity" />
+        <!-- 百富 -->
+        <activity android:name=".pay.ui.PaxActivity" />
+        <activity android:name=".pay.pax.PaxMainActivity" />
+        <!-- 设备适配 -->
+        <activity android:name=".pay.ui.ConnectionActivity" />
+        <!-- 设置 -->
+        <activity android:name=".security.ui.SetPasswordActivity" />
+        <activity android:name=".settings.ui.SettingsActivity" />
+        <!-- 拍照 -->
+        <activity
+            android:name=".login.ui.CameraActivity"
+            android:screenOrientation="landscape" />
+        <!-- 信用卡还款 -->
+        <activity android:name=".creditcard.ui.RefundActivity" />
+        <!-- 我的账户 -->
+        <activity android:name=".merchant.ui.MyAccountActivity" />
+        <!-- 我的收款 -->
+        <activity android:name=".merchant.ui.MyGatheringActivity" />
+        <!-- 我的付款 -->
+        <activity android:name=".merchant.ui.MyPaymentActivity" />
+        <!-- 通知 -->
+        <activity android:name=".note.ui.CompleteActivity" />
     </application>
 </manifest>

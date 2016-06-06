@@ -1,5 +1,6 @@
 package com.yusys.mpos.main.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -10,6 +11,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
+import com.yusys.mpos.base.manager.AppManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,16 +28,17 @@ public class MainActivity extends FragmentActivity {
     FragmentTabHost tabHost;
     private LayoutInflater inflater;
 
-    private Class classes[] = {CalculatorFragment.class, FunctionFragment.class, MeFragment.class};
-    private int selectors[] = {R.drawable.selector_tab_2,
-            R.drawable.selector_tab_3, R.drawable.selector_tab_4};
-    private String titles[] = {"收款", "功能", "我"};
+    private Class classes[] = {GatheringFragment.class, PaymentFragment.class, MeFragment.class};
+    private int selectors[] = {R.drawable.selector_tab_gathering,
+            R.drawable.selector_tab_payment, R.drawable.selector_tab_me};
+    private String titles[] = {"付款", "收款", "我"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        AppManager.getInstance().addActivity(this);
         inflater = LayoutInflater.from(this);
         initView();
         tabHost.setCurrentTab(0);
@@ -45,6 +48,7 @@ public class MainActivity extends FragmentActivity {
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+        AppManager.getInstance().finishActivity(this);
     }
 
     private void initView() {
@@ -63,10 +67,22 @@ public class MainActivity extends FragmentActivity {
      */
     private View getTabItemView(int index) {
         View root = inflater.inflate(R.layout.item_tab, null);
-        ImageView imageView = (ImageView) root.findViewById(R.id.imageview);
+        ImageView imageView = (ImageView) root.findViewById(R.id.iv_tab_item);
         imageView.setImageResource(selectors[index]);
-        TextView textView = (TextView) root.findViewById(R.id.textview);
+        TextView textView = (TextView) root.findViewById(R.id.tv_tab_item);
         textView.setText(titles[index]);
         return root;
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 }

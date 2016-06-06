@@ -1,11 +1,12 @@
 package com.yusys.mpos.security.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
+import com.yusys.mpos.base.manager.AppManager;
+import com.yusys.mpos.base.ui.BaseActivity;
 import com.yusys.mpos.base.widget.SignBoard;
 
 import butterknife.Bind;
@@ -16,9 +17,9 @@ import butterknife.OnClick;
  * 签名
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
- * @since 2016-05-19 14:25
+ * @since 2016-05-06 14:28
  */
-public class SignActivity extends Activity {
+public class SignActivity extends BaseActivity {
 
     @Bind(R.id.toolbar_title)
     TextView toolbar_title;
@@ -30,11 +31,7 @@ public class SignActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
         ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        AppManager.getInstance().addActivity(this);
         initView();
     }
 
@@ -42,6 +39,7 @@ public class SignActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+        AppManager.getInstance().finishActivity(this);
     }
 
     private void initView() {
@@ -55,5 +53,11 @@ public class SignActivity extends Activity {
     @OnClick(R.id.btn_clear)
     void clear(View view) {
         signBoard.removeAllPaint();
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.toolbar_back)
+    void back(View view) {
+        finish();
     }
 }

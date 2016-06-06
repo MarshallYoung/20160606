@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dark"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextView_Note"
+        android:maxLines="2"
+        android:text="为了不影响审批与结算 \n请安示意图拍照,保持清晰,勿遮挡" />
+
+    <GridView
+        android:id="@+id/gv_certificates"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:padding="10dp"
+        android:verticalSpacing="10dp" />
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

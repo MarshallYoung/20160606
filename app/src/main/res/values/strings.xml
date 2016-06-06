@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">宇信科技</string>
-    <string name="setting">设置</string>
+    <string name="settings">设置</string>
     <string name="back">后退</string>
     <string name="register">注册</string>
     <string name="login">登录</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="remember_username">记住用户名</string>
-    <string name="forget_password">忘记密码</string>
-    <string name="homepage">主页</string>
+    <string name="forget_password">忘记密码?</string>
+    <string name="swiping_card">请刷卡</string>
+    <string name="query_balance">余额查询</string>
+    <string name="device_settings">读卡器设置</string>
+    <string name="me">我</string>
     <string name="function">功能</string>
     <string name="take_photo">拍照</string>
 </resources>

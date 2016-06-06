@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/Cell_Single"
+            android:layout_marginTop="20dp">
+
+            <View
+                android:layout_width="@dimen/length_option_icon"
+                android:layout_height="@dimen/length_option_icon"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_orange_clock" />
+
+            <TextView
+                style="@style/EditText_Base"
+                android:text="默认即时到帐" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextView_Note_Small"
+            android:text="若满足条件,将为您的交易结算默认选择即时到帐" />
+
+        <LinearLayout
+            android:id="@+id/ll_security"
+            style="@style/Cell_Top"
+            android:layout_marginTop="20dp">
+
+            <View
+                android:layout_width="@dimen/length_option_icon"
+                android:layout_height="@dimen/length_option_icon"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_orange_lock" />
+
+            <TextView
+                style="@style/EditText_Base"
+                android:text="账户安全" />
+
+            <View style="@style/Icon_Arrow.Right_Gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_agreements"
+            style="@style/Cell_Bottom">
+
+            <View
+                android:layout_width="@dimen/length_option_icon"
+                android:layout_height="@dimen/length_option_icon"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_orange_agreement" />
+
+            <TextView
+                style="@style/EditText_Base"
+                android:text="查看已确认的电子协议" />
+
+            <View style="@style/Icon_Arrow.Right_Gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exit"
+            style="@style/Cell_Single"
+            android:layout_marginTop="20dp">
+
+            <View
+                android:layout_width="@dimen/length_option_icon"
+                android:layout_height="@dimen/length_option_icon"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_exit" />
+
+            <TextView
+                style="@style/EditText_Base"
+                android:text="安全退出" />
+
+            <View style="@style/Icon_Arrow.Right_Gray" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

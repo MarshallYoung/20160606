@@ -1,19 +1,31 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="icon_length">30dp</dimen>
-    <dimen name="icon_margin">2dp</dimen>
+    <dimen name="icon_length">24dp</dimen>
+    <dimen name="icon_margin">5dp</dimen>
     <!-- 边长 -->
-    <dimen name="length_option_icon">30dp</dimen>
+    <dimen name="length_option_icon">24dp</dimen>
     <!-- 高度 -->
     <dimen name="height_button">48dp</dimen>
-    <dimen name="height_toolbar">54dp</dimen>
+    <dimen name="height_toolbar">45dp</dimen>
     <!-- 字号 -->
-    <dimen name="textsize_button">20sp</dimen>
-    <dimen name="textsize_option">24sp</dimen>
-    <dimen name="textsize_toolbar_title">20sp</dimen>
-    <dimen name="textsize_toolbar">18sp</dimen>
-    <dimen name="textsize_text">18sp</dimen>
+    <dimen name="textsize_button">16sp</dimen>
+    <dimen name="textsize_text">14sp</dimen>
+    <dimen name="textsize_input">14sp</dimen>
+    <dimen name="textsize_option">20sp</dimen>
+    <dimen name="textsize_toolbar_title">18sp</dimen>
+    <dimen name="textsize_toolbar">16sp</dimen>
     <dimen name="textsize_calculator">30sp</dimen>
     <!-- 间距 -->
     <dimen name="margin_side">10dp</dimen>
+    <!-- cell的所有设置
+        height_minus_ply是高度减去厚度,其与高度的差值是边框的厚度,
+        此厚度用于drawable的xml文件布局,具体见布局
+        修改cell_height时请同时修改cell_height_minus后缀的所有参数 -->
+    <dimen name="cell_height">42dp</dimen>
+    <dimen name="cell_height_minus_top_ply">41dp</dimen>
+    <dimen name="cell_height_minus_bottom_ply">41.5dp</dimen>
+    <dimen name="cell_padding">10dp</dimen>
+    <dimen name="cell_text_size">14sp</dimen>
+    <!-- spinner下拉菜单 -->
+    <dimen name="spinner_height">30dp</dimen>
 </resources>

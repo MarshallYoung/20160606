@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextView_Note"
+        android:maxLines="2"
+        android:text="为了保证资金安全 \n需要使用本人的银行账户" />
+
+
+    <LinearLayout
+        style="@style/Cell_Top"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="账户户名" />
+
+        <EditText
+            style="@style/EditText_Base"
+            android:hint="宇信科技" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Middle">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="账户卡号" />
+
+        <EditText
+            style="@style/EditText_Base"
+            android:hint="请输入" />
+
+        <Button
+            android:layout_width="@dimen/icon_length"
+            android:layout_height="@dimen/icon_length"
+            android:background="@drawable/icon_card_button" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Middle">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="银行名称" />
+
+        <EditText
+            style="@style/EditText_Base"
+            android:hint="请输入" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Bottom">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="发卡城市" />
+
+        <EditText
+            style="@style/EditText_Base"
+            android:hint="请输入" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

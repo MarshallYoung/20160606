@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.YXApplication;
-import com.yusys.mpos.base.manager.LogManager;
 
 import java.util.List;
 

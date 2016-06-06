@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_change_password"
+        style="@style/Cell_Single"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/EditText_Base"
+            android:text="修改密码" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Cell_Single"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/EditText_Base"
+            android:text="手势密码" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

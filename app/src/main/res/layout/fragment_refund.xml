@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_credit_card_number"
+        style="@style/Cell_Top"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="卡号" />
+
+        <TextView
+            style="@style/EditText_Base"
+            android:hint="信用卡卡号" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Middle">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="银行" />
+
+        <EditText style="@style/EditText_Base" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Bottom">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="金额" />
+
+        <EditText
+            style="@style/EditText_Base"
+            android:hint="不低于10元,免手续费" />
+    </LinearLayout>
+
+    <Button
+        style="@style/Button_Transparent"
+        android:text="还款说明"
+        android:textColor="@color/selector_orange" />
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

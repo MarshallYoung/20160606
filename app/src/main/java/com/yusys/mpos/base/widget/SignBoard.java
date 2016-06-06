@@ -49,10 +49,8 @@ public class SignBoard extends View {
         //得到屏幕的分辨率
         DisplayMetrics dm = new DisplayMetrics();
         ((Activity) c).getWindowManager().getDefaultDisplay().getMetrics(dm);
-
         bitmapWidth = dm.widthPixels;
         bitmapHeight = dm.heightPixels - 2 * 45;
-
         initCanvas();
         savePath = new ArrayList<>();
         deletePath = new ArrayList<>();
@@ -64,10 +62,8 @@ public class SignBoard extends View {
         //得到屏幕的分辨率
         DisplayMetrics dm = new DisplayMetrics();
         ((Activity) c).getWindowManager().getDefaultDisplay().getMetrics(dm);
-
         bitmapWidth = dm.widthPixels;
         bitmapHeight = dm.heightPixels - 2 * 45;
-
         initCanvas();
         savePath = new ArrayList<>();
         deletePath = new ArrayList<>();
@@ -147,12 +143,10 @@ public class SignBoard extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
                 mPath = new Path();
                 dp = new DrawPath();
                 dp.path = mPath;
                 dp.paint = mPaint;
-
                 touch_start(x, y);
                 invalidate(); //清屏
                 break;

@@ -19,6 +19,7 @@ import butterknife.OnClick;
 
 /**
  * 获取手机验证码
+ * 暂时废弃!
  *
  * @author yuanshuai (marshall.yuan@foxmail.com)
  * @since 2016-05-10 11:29
@@ -41,8 +42,7 @@ public class VerificationCodeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
-            fragmentView = inflater.inflate(R.layout.fragment_verification_code,
-                    container, false);
+            fragmentView = inflater.inflate(R.layout.fragment_verification_code, container, false);
             ButterKnife.bind(this, fragmentView);
         }
         // 缓存Fragment,避免重新执行onCreateView
@@ -51,12 +51,6 @@ public class VerificationCodeFragment extends Fragment {
             parentView.removeView(fragmentView);
         }
         return fragmentView;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
     }
 
     // 获取验证码

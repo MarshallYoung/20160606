@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,12 +14,52 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.yusys.mpos.base.YXApplication;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.OutputStream;
 
 /**
  * 设备信息
  */
 public class DeviceManager {
+
+    /**
+     * 判断机器Android是否已经root，即是否获取root权限
+     */
+    public static boolean haveRoot() {
+        int i = execRootCmdSilent("echo test"); // 通过执行测试命令来检测
+        if (i != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    private static int execRootCmdSilent(String paramString) {
+        try {
+            Process localProcess = Runtime.getRuntime().exec("su");
+            Object localObject = localProcess.getOutputStream();
+            DataOutputStream localDataOutputStream = new DataOutputStream((OutputStream) localObject);
+            String str = String.valueOf(paramString);
+            localObject = str + "\n";
+            localDataOutputStream.writeBytes((String) localObject);
+            localDataOutputStream.flush();
+            localDataOutputStream.writeBytes("exit\n");
+            localDataOutputStream.flush();
+            localProcess.waitFor();
+            int result = localProcess.exitValue();
+            return (Integer) result;
+        } catch (Exception localException) {
+            localException.printStackTrace();
+            return -1;
+        }
+    }
+
+    /**
+     * 得到IMEI
+     */
+    public static String getIMEI(Context context) {
+        return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+    }
 
     /**
      * 得到设备屏幕参数

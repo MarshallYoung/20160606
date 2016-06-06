@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/selector_btn_connect"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/icon_location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定位当前地址"
+            android:textColor="@color/gray_dark" />
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/Cell_Top">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="所在城市" />
+
+        <EditText
+            android:id="@+id/edt_city"
+            style="@style/EditText_Base" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/Cell_Bottom">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="具体位置" />
+
+        <EditText
+            android:id="@+id/edt_location"
+            style="@style/EditText_Base"
+            android:ellipsize="end" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView_Note_Small"
+        android:text="显示电子凭证上的商户名,默认姓名" />
+
+    <LinearLayout style="@style/Cell_Single">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="票据名称" />
+
+        <EditText
+            android:id="@+id/edt_bill"
+            style="@style/EditText_Base"
+            android:hint="显示电子凭证上的商户名" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

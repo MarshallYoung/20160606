@@ -5,11 +5,17 @@
     <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="LinearLayout_Root">
+        <item name="android:background">@color/gray_light</item>
+    </style>
     <!-- 透明按钮 -->
     <style name="Button_Transparent">
-        <item name="android:background">#00ffffff</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#00000000</item>
         <item name="android:textColor">@color/selector_button_transparent</item>
-        <item name="android:textSize">@dimen/textsize_button</item>
+        <item name="android:textSize">@dimen/textsize_input</item>
     </style>
     <!-- 导航栏按钮 -->
     <style name="Button_Toolbar">
@@ -23,29 +29,110 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/textsize_button</item>
     </style>
-    <!-- 红色按钮 -->
-    <style name="Button_Red">
-        <item name="android:background">@drawable/selector_btn_red</item>
+    <!-- 橘黄色按钮 -->
+    <style name="Button_Orange">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/selector_btn_orange</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/textsize_button</item>
     </style>
-    <!-- 选项按钮背景 -->
-    <style name="LinearLayout_Option">
+    <!-- 计算器按钮 -->
+    <style name="Button_Calculator">
+        <item name="android:background">@drawable/selector_btn_calculator</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:layout_margin">0.25dp</item>
+    </style>
+    <!-- 提示 -->
+    <style name="TextView_Note">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/height_button</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextView_Note_Small">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@color/gray_text</item>
+    </style>
+    <!-- 放在EditText前面的TextView -->
+    <style name="TextView_Header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textsize_text</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:lines">1</item>
+    </style>
+    <!-- 基本的EditText -->
+    <style name="EditText_Base">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/textsize_text</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+    <!-- 联迪自定义控件 -->
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+    <!-- cell,LinearLayout专用 -->
+    <style name="Cell_Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/cell_height</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/selector_btn_option</item>
+        <item name="android:paddingLeft">@dimen/cell_padding</item>
+        <item name="android:paddingRight">@dimen/cell_padding</item>
     </style>
-    <!-- 计算器按钮 -->
-    <style name="Button_Calculator" parent="Button_Blue">
-        <item name="android:textSize">@dimen/textsize_calculator</item>
-        <item name="android:layout_margin">1dp</item>
+
+    <style name="Cell_Top" parent="Cell_Base">
+        <item name="android:background">@drawable/selector_cell_top</item>
     </style>
-    <!-- 文字 -->
-    <style name="Text_Base">
-        <item name="android:textSize">@dimen/textsize_text</item>
-        <item name="android:textColor">@color/gray_text</item>
+
+    <style name="Cell_Middle" parent="Cell_Base">
+        <item name="android:background">@drawable/selector_cell_middle</item>
+    </style>
+
+    <style name="Cell_Bottom" parent="Cell_Base">
+        <item name="android:background">@drawable/selector_cell_bottom</item>
+    </style>
+
+    <style name="Cell_Single" parent="Cell_Base">
+        <item name="android:background">@drawable/selector_cell_single</item>
+    </style>
+
+    <!-- 箭头 -->
+    <style name="Icon_Arrow">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">16dp</item>
+    </style>
+
+    <style name="Icon_Arrow.Right_Gray" parent="Icon_Arrow">
+        <item name="android:background">@drawable/icon_arrow_right_gray</item>
+    </style>
+    <!-- 红色边框提示小字 -->
+    <style name="TextView_Note_Stroke">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/shape_stroke_red</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>

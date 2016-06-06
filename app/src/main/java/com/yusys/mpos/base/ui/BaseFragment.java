@@ -1,10 +1,8 @@
 package com.yusys.mpos.base.ui;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.app.Fragment;
+
+import butterknife.ButterKnife;
 
 /**
  * Fragment基类
@@ -14,8 +12,15 @@ import android.view.ViewGroup;
  */
 public class BaseFragment extends Fragment {
 
+    /**
+     * 每次显示在前台会执行的方法
+     */
+    public void onReveal() {
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/Cell_Top"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/EditText_Base"
+            android:text="小微商户支付服务协议" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Middle">
+
+        <TextView
+            style="@style/EditText_Base"
+            android:text="数据查询使用协议" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/Cell_Bottom">
+
+        <TextView
+            style="@style/EditText_Base"
+            android:text="协议3" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
+    </LinearLayout>
+</LinearLayout>

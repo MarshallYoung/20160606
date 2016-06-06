@@ -12,6 +12,9 @@ import com.yusys.mpos.R;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * 功能列表的适配器,用于functionFragment的gridView
  *
@@ -57,25 +60,32 @@ public class FunctionAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.item_functionbutton, null);
-            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.function_image);
-            viewHolder.textView = (TextView) convertView.findViewById(R.id.function_text);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         FunctionItem item = itemList.get(position);
         if (item != null) {
-            viewHolder.imageView.setImageResource(item.image);
-            viewHolder.textView.setText(item.text);
+            viewHolder.function_image.setImageResource(item.image);
+            viewHolder.function_text.setText(item.text);
         }
         return convertView;
     }
 
-    private static class ViewHolder {
+    public static class ViewHolder {
         ImageView imageView;
         TextView textView;
+
+        @Bind(R.id.function_image)
+        ImageView function_image;
+        @Bind(R.id.function_text)
+        TextView function_text;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_cell_white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            style="@style/TextView_Header"
+            android:text="05-02" />
+
+        <TextView
+            style="@style/TextView_Header"
+            android:layout_marginTop="10dp"
+            android:text="2笔交易" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView_Header"
+        android:text="￥40.00"
+        android:textSize="20sp" />
+</LinearLayout>

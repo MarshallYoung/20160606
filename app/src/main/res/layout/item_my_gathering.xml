@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_cell_white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="@dimen/icon_length"
+        android:background="@drawable/icon_card" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView_Header"
+                android:text="消费" />
+
+            <TextView
+                style="@style/TextView_Note_Stroke"
+                android:text="交易拒绝" />
+
+            <TextView
+                style="@style/TextView_Note_Stroke"
+                android:text="失败" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextView_Header"
+            android:layout_marginTop="10dp"
+            android:text="10:15:00" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView_Header"
+        android:text="￥20.00"
+        android:textSize="20sp" />
+</LinearLayout>

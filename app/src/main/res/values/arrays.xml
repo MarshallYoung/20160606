@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>类型</item>
+        <item>消费</item>
+        <item>信用卡还款</item>
+    </string-array>
+    <string-array name="status">
+        <item>状态</item>
+        <item>成功</item>
+        <item>失败</item>
+    </string-array>
+    <string-array name="filter">
+        <item>筛选</item>
+        <item>近1个月</item>
+        <item>其他</item>
+    </string-array>
+</resources>

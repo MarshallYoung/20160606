@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 背景颜色 -->
+            <item>
+                <shape>
+                    <solid android:color="@color/gray_light" />
+                </shape>
+            </item>
+            <!-- item的属性:
+            top是距离顶端的距离,这里设置高度是距离底端:高度-1,也就是顶端的阴影厚度是:高度-(高度-1)=1,顶端厚度是1
+            bottom是距离底端的距离,计算方法同上,得出底端边框是0.5 -->
+            <item android:bottom="0dp" android:left="15dp" android:top="@dimen/cell_height_minus_bottom_ply">
+                <shape>
+                    <solid android:color="@color/gray_line" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                </shape>
+            </item>
+            <item android:bottom="0dp" android:left="15dp" android:top="@dimen/cell_height_minus_bottom_ply">
+                <shape>
+                    <solid android:color="@color/gray_line" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

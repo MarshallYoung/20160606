@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextView_Note"
+        android:text="滚动选择最近您经营范围的选项" />
+
+    <ListView
+        android:id="@+id/lv_domains"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

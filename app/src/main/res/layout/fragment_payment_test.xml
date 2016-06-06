@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/ll_credit_card_refund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_cell_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="30dp">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@drawable/credit_card_refund" />
+
+        <TextView
+            style="@style/TextView_Header"
+            android:layout_marginLeft="20dp"
+            android:text="信用卡还款"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_test"
+        style="@style/Button_Transparent"
+        android:layout_marginTop="40dp"
+        android:text="测试" />
+
+    <GridView
+        android:id="@+id/gv_function"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#888888"
+        android:horizontalSpacing="1dp"
+        android:numColumns="3"
+        android:padding="1dp"
+        android:verticalSpacing="1dp" />
+</LinearLayout>

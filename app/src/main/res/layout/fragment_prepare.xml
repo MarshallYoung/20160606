@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/mpos"
+            android:contentDescription="@string/app_name" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView_Note_Small"
+        android:text="请确认读卡器电源已打开\n请点击下方设备连接按钮连接设备" />
+
+    <Button
+        android:id="@+id/btn_connect_device"
+        style="@style/Button_Orange"
+        android:text="连接设备" />
+</LinearLayout>

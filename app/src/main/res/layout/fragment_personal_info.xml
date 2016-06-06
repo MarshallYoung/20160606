@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_personal_info" />
+
+    <LinearLayout
+        android:id="@+id/ll_my_account"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/selector_orange_bg"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_portrait"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/icon_user" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="王超强"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13888888888"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/icon_arrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="额度:"
+                android:textColor="@color/gray_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50000"
+                android:textColor="@color/orange" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="费率:"
+                android:textColor="@color/gray_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.5%"
+                android:textColor="@color/orange" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_my_gathering"
+                style="@style/Cell_Top">
+
+                <View
+                    android:layout_width="@dimen/length_option_icon"
+                    android:layout_height="@dimen/length_option_icon"
+                    android:background="@drawable/icon_my_gathering" />
+
+                <TextView
+                    style="@style/EditText_Base"
+                    android:text="我的收款" />
+
+                <View style="@style/Icon_Arrow.Right_Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_my_payment"
+                style="@style/Cell_Middle">
+
+                <View
+                    android:layout_width="@dimen/length_option_icon"
+                    android:layout_height="@dimen/length_option_icon"
+                    android:background="@drawable/icon_my_payment" />
+
+                <TextView
+                    style="@style/EditText_Base"
+                    android:text="我的付款" />
+
+                <View style="@style/Icon_Arrow.Right_Gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contact_us"
+                style="@style/Cell_Bottom">
+
+                <View
+                    android:layout_width="@dimen/length_option_icon"
+                    android:layout_height="@dimen/length_option_icon"
+                    android:background="@drawable/icon_info" />
+
+                <TextView
+                    style="@style/EditText_Base"
+                    android:text="联系我们" />
+
+                <View style="@style/Icon_Arrow.Right_Gray" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout_Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/Cell_Single"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:layout_width="@dimen/icon_length"
+            android:layout_height="@dimen/icon_length"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_mobile_phone" />
+
+        <EditText
+            android:id="@+id/edt_mobile_phone"
+            style="@style/EditText_Base"
+            android:hint="请输入手机号"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next_step"
+        style="@style/Button_Orange"
+        android:text="下一步" />
+</LinearLayout>

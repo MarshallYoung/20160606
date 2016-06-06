@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_toolbar"
+    android:background="@color/orange">
+
+    <LinearLayout
+        android:id="@+id/toolbar_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/selector_btn_connect"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="16dp"
+            android:background="@drawable/icon_connect_white"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:id="@+id/toolbar_connect_text"
+            style="@style/Button_Toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未连接" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_toolbar_title" />
+
+    <ImageButton
+        android:id="@+id/toolbar_add"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/icon_add_white"
+        android:contentDescription="@string/app_name" />
+</RelativeLayout>
