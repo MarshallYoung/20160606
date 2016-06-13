@@ -72,7 +72,7 @@ public class DeviceListFragment extends BaseFragment {
         parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentActivity.showFragment(parentActivity.prepareFragment);
+                parentActivity.showFragment(parentActivity.fragments.get(0));
             }
         });
         searchDevice(null);

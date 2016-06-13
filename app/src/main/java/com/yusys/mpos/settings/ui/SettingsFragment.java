@@ -51,7 +51,12 @@ public class SettingsFragment extends BaseFragment {
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("设置");
-        parentActivity.toolbar_back.setOnClickListener(parentActivity.finishListener);
+        parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentActivity.finish();
+            }
+        });
     }
 
     /**
@@ -60,7 +65,7 @@ public class SettingsFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.ll_security)
     void security(View view) {
-        parentActivity.showFragment(parentActivity.securityFragment);
+        parentActivity.showFragment(parentActivity.fragments.get(1));
     }
 
     /**
@@ -69,7 +74,7 @@ public class SettingsFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.ll_agreements)
     void agreements(View view) {
-        parentActivity.showFragment(parentActivity.agreementsFragment);
+        parentActivity.showFragment(parentActivity.fragments.get(2));
     }
 
     @SuppressWarnings("unused")

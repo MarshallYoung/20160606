@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +17,6 @@ import android.widget.ImageView;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.login.ui.CameraActivity;
 import com.yusys.mpos.register.adapter.CertificateAdapter;
 import com.yusys.mpos.register.adapter.CertificateItem;
 
@@ -67,11 +70,6 @@ public class CertificatesFragment extends BaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("证件照片");
@@ -84,15 +82,27 @@ public class CertificatesFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == Activity.RESULT_OK) {
-            Bundle bundle = data.getExtras();
-            byte[] bytes = bundle.getByteArray("bytes");
-            Bitmap bm = byteToBitmap(bytes);
-            ImageView imageView = (ImageView) gv_certificates.getChildAt(requestCode)
-                    .findViewById(R.id.iv_certificate_photo);
-            imageView.setImageBitmap(bm);
+            if (intent == null || "".equals(intent)) {
+                return;
+            } else {
+                Bitmap bm = (Bitmap) intent.getExtras().get("data");
+//                Bitmap bm1 = adjustPhotoRotation(bm, 270);// 旋转图片
+                ImageView imageView = (ImageView) gv_certificates.getChildAt(requestCode)
+                        .findViewById(R.id.iv_certificate_photo);
+                imageView.setImageBitmap(bm);
+            }
         }
+//        if (resultCode == Activity.RESULT_OK) {
+//            Bundle bundle = intent.getBundleExtra("photo");
+//            byte[] bytes = bundle.getByteArray("bytes");
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+////            Bitmap bm = byteToBitmap(bytes);
+//            ImageView imageView = (ImageView) gv_certificates.getChildAt(requestCode)
+//                    .findViewById(R.id.iv_certificate_photo);
+//            imageView.setImageBitmap(bitmap);
+//        }
     }
 
     /**
@@ -101,7 +111,9 @@ public class CertificatesFragment extends BaseFragment {
      * @param position 点击的按钮所在的item下标
      */
     public void takePhoto(int position) {
-        startActivityForResult(new Intent(getActivity(), CameraActivity.class), position);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, position);
+//        startActivityForResult(new Intent(getActivity(), CameraActivity.class), position);
     }
 
     /**
@@ -132,5 +144,35 @@ public class CertificatesFragment extends BaseFragment {
             i += 1;
         }
         return b;
+    }
+
+    // 旋转图片
+    private Bitmap adjustPhotoRotation(Bitmap bm, final int orientationDegree) {
+
+        Matrix m = new Matrix();
+        m.setRotate(orientationDegree, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
+        float targetX, targetY;
+        if (orientationDegree == 90) {
+            targetX = bm.getHeight();
+            targetY = 0;
+        } else {
+            targetX = bm.getHeight();
+            targetY = bm.getWidth();
+        }
+
+        final float[] values = new float[9];
+        m.getValues(values);
+
+        float x1 = values[Matrix.MTRANS_X];
+        float y1 = values[Matrix.MTRANS_Y];
+
+        m.postTranslate(targetX - x1, targetY - y1);
+
+        Bitmap bm1 = Bitmap.createBitmap(bm.getHeight(), bm.getWidth(), Bitmap.Config.ARGB_8888);
+        Paint paint = new Paint();
+        Canvas canvas = new Canvas(bm1);
+        canvas.drawBitmap(bm, m, paint);
+
+        return bm1;
     }
 }

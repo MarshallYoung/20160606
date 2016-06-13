@@ -48,6 +48,7 @@ public class SwipingCardFragment extends BaseFragment {
         parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                parentActivity.fragments.get(1);
             }
         });
     }

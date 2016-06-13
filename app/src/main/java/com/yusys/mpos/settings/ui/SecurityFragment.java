@@ -47,7 +47,12 @@ public class SecurityFragment extends BaseFragment {
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("");
-        parentActivity.toolbar_back.setOnClickListener(parentActivity.clickToShowSettings);
+        parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentActivity.showFragment(parentActivity.fragments.get(0));
+            }
+        });
     }
 
     /**
@@ -56,6 +61,6 @@ public class SecurityFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.ll_change_password)
     void changePassword(View view) {
-        parentActivity.showFragment(parentActivity.changePasswordFragment);
+        parentActivity.showFragment(parentActivity.fragments.get(3));
     }
 }

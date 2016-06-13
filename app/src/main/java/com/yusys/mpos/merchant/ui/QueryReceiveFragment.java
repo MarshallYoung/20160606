@@ -61,7 +61,7 @@ public class QueryReceiveFragment extends BaseFragment {
         parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentActivity.showFragment(parentActivity.myGatheringFragment);
+                parentActivity.showFragment(parentActivity.fragments.get(0));
             }
         });
         parentActivity.toolbar_right_button.setVisibility(View.INVISIBLE);

@@ -46,6 +46,11 @@ public class AgreementsFragment extends BaseFragment {
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("电子协议");
-        parentActivity.toolbar_back.setOnClickListener(parentActivity.clickToShowSettings);
+        parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentActivity.showFragment(parentActivity.fragments.get(0));
+            }
+        });
     }
 }

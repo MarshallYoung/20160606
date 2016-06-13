@@ -1,7 +1,6 @@
 package com.yusys.mpos.login.ui;
 
-import android.content.Intent;
-import android.graphics.PixelFormat;
+import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
@@ -12,8 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.AppManager;
-import com.yusys.mpos.base.ui.BaseActivity;
+import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.StringManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +24,7 @@ import butterknife.OnClick;
  * @author yuanshuai (marshall.yuan@foxmail.com)
  * @since 2016-05-31 16:48
  */
-public class CameraActivity extends BaseActivity {
+public class CameraActivity extends Activity {
 
     @Bind(R.id.btn_cancel)
     Button btn_cancel;// 取消
@@ -38,7 +37,8 @@ public class CameraActivity extends BaseActivity {
     SurfaceView sv_photo;
     private Camera camera;
     private Camera.Parameters parameters;
-    Bundle bundle;
+    //    Bundle bundle;// 用来存放图片
+    byte[] bytes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +73,13 @@ public class CameraActivity extends BaseActivity {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_confirm)
     void confirm(View view) {
-        if (bundle != null) {
-            Intent intent = new Intent();
-            intent.putExtra("photo", bundle);
-            setResult(RESULT_OK, intent);
+        if (bytes != null) {
+
+//            Bundle bundle = new Bundle();
+//            bundle.putByteArray("bytes", bytes);
+//            Intent intent = new Intent();
+//            intent.putExtra("photo", bundle);
+//            setResult(RESULT_OK, intent);
             finish();
         }
     }
@@ -88,20 +91,43 @@ public class CameraActivity extends BaseActivity {
     @OnClick(R.id.btn_take_photo)
     void takePhoto(View view) {
         if (camera != null) {
-            camera.takePicture(null, null, new MyPictureCallback());
+            camera.takePicture(null, null, jpegCallBack);
         }
     }
 
-    private final class MyPictureCallback implements PictureCallback {
+    // 拍照瞬间调用
+    private final Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
+        @Override
+        public void onShutter() {
+            LogManager.e("==拍照界面==", "shutter");
+        }
+    };
+
+    // 获得没有压缩过的图片数据
+    private final PictureCallback rawCallBack = new PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-            bundle = new Bundle();
-            bundle.putByteArray("bytes", data);
-            btn_cancel.setVisibility(View.VISIBLE);
-            btn_confirm.setVisibility(View.VISIBLE);
-            btn_take_photo.setVisibility(View.INVISIBLE);
+            LogManager.e("==拍照界面==", "raw");
         }
-    }
+    };
+
+    // 返回jpeg图片数据
+    private final PictureCallback jpegCallBack = new PictureCallback() {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            try {
+                LogManager.e("==拍照界面==", "图片大小是:" + StringManager.convertFileSize(data.length));
+                bytes = data;
+//                bundle = new Bundle();
+//                bundle.putByteArray("bytes", data);
+                btn_cancel.setVisibility(View.VISIBLE);
+                btn_confirm.setVisibility(View.VISIBLE);
+                btn_take_photo.setVisibility(View.INVISIBLE);
+            } catch (Exception exception) {
+                LogManager.e("==拍照界面==", exception.toString());
+            }
+        }
+    };
 
 
     private final class SurfaceCallback implements Callback {
@@ -109,19 +135,21 @@ public class CameraActivity extends BaseActivity {
         // 拍照状态变化时调用该方法
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            parameters = camera.getParameters(); // 获取各项参数
-            parameters.setPictureFormat(PixelFormat.JPEG); // 设置图片格式
-            parameters.setPreviewSize(width, height); // 设置预览大小
-            parameters.setPreviewFrameRate(5);  //设置每秒显示4帧
-            parameters.setPictureSize(width, height); // 设置保存的图片尺寸
-            parameters.setJpegQuality(80); // 设置照片质量
+//            parameters = camera.getParameters(); // 获取各项参数
+//            parameters.setPictureFormat(PixelFormat.JPEG); // 设置图片格式
+//            //这里面的参数只能是几个特定的参数,否则会报错.(176*144,320*240,352*288,480*360,640*480)
+//            parameters.setPreviewSize(640, 480); // 设置预览大小
+//            parameters.setPreviewFrameRate(5);  //设置每秒显示4帧
+//            parameters.setPictureSize(640, 480); // 设置保存的图片尺寸
+//            parameters.setJpegQuality(80); // 设置照片质量
+//            camera.setParameters(parameters);
         }
 
         // 开始拍照时调用该方法
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
+            camera = Camera.open(); // 打开摄像头
             try {
-                camera = Camera.open(); // 打开摄像头
                 camera.setPreviewDisplay(holder); // 设置用于显示拍照影像的SurfaceHolder对象
                 camera.startPreview(); // 开始预览
             } catch (Exception e) {
@@ -133,6 +161,7 @@ public class CameraActivity extends BaseActivity {
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
             if (camera != null) {
+                camera.stopPreview();//停止预览
                 camera.release(); // 释放照相机
                 camera = null;
             }

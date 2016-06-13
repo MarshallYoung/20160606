@@ -70,7 +70,7 @@ public class MyGatheringFragment extends BaseFragment {
         parentActivity.toolbar_right_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentActivity.showFragment(parentActivity.queryReceiveFragment);
+                parentActivity.showFragment(parentActivity.fragments.get(1));
             }
         });
     }

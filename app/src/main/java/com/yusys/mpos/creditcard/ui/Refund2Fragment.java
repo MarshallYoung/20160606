@@ -46,7 +46,7 @@ public class Refund2Fragment extends BaseFragment {
         parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentActivity.showFragment(parentActivity.refundFragment);
+                parentActivity.showFragment(parentActivity.fragments.get(0));
             }
         });
     }
@@ -57,6 +57,6 @@ public class Refund2Fragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_confirm)
     void confirm(View view) {
-        parentActivity.showFragment(parentActivity.swipingCardFragment);
+        parentActivity.showFragment(parentActivity.fragments.get(2));
     }
 }

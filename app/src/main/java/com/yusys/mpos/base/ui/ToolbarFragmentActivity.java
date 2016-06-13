@@ -36,6 +36,8 @@ public class ToolbarFragmentActivity extends BaseActivity {
         setContentView(R.layout.activity_blank_with_toolbar);
         ButterKnife.bind(this);
         fragments = new ArrayList<>();
+        initFragments();
+        initView();
     }
 
     /**
@@ -51,6 +53,13 @@ public class ToolbarFragmentActivity extends BaseActivity {
         }
         transaction.commit();
         showFragment(fragments.get(0));
+    }
+
+    /**
+     * 初始化界面
+     */
+    public void initView() {
+
     }
 
 

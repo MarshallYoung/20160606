@@ -15,7 +15,8 @@
             android:id="@+id/iv_certificate_photo"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:background="@color/gray_light" />
+            android:background="@color/gray_light"
+            android:scaleType="fitXY" />
 
         <ImageButton
             android:id="@+id/ib_take_photo"

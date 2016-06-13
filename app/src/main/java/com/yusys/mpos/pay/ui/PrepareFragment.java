@@ -43,7 +43,12 @@ public class PrepareFragment extends BaseFragment {
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("请连接读卡器");
-        parentActivity.toolbar_back.setOnClickListener(parentActivity.finishListener);
+        parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parentActivity.finish();
+            }
+        });
     }
 
     /**
@@ -52,6 +57,6 @@ public class PrepareFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_connect_device)
     void connectDevice(View view) {
-        parentActivity.showFragment(parentActivity.deviceListFragment);
+        parentActivity.showFragment(parentActivity.fragments.get(1));
     }
 }

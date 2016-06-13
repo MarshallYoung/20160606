@@ -50,7 +50,7 @@ public class ChangePasswordFragment extends BaseFragment {
         parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentActivity.showFragment(parentActivity.securityFragment);
+                parentActivity.showFragment(parentActivity.fragments.get(1));
             }
         });
     }
