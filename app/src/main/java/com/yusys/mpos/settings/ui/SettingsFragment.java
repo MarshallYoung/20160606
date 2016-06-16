@@ -88,7 +88,8 @@ public class SettingsFragment extends BaseFragment {
                 .showCancelButton(true)
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
                         getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
                         AppManager.getInstance().finishAllActivity();
                     }

@@ -26,7 +26,7 @@ public class ChangePasswordFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
-            fragmentView = inflater.inflate(R.layout.fragment_change_password, container, false);
+            fragmentView = inflater.inflate(R.layout.fragment_change16, container, false);
             ButterKnife.bind(this, fragmentView);
             parentActivity = (SettingsActivity) getActivity();
         }

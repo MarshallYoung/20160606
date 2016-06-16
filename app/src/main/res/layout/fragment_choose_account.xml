@@ -20,6 +20,7 @@
             android:text="账户户名" />
 
         <EditText
+            android:id="@+id/edt_account"
             style="@style/EditText_Base"
             android:hint="宇信科技" />
     </LinearLayout>
@@ -31,6 +32,7 @@
             android:text="账户卡号" />
 
         <EditText
+            android:id="@+id/edt_card"
             style="@style/EditText_Base"
             android:hint="请输入" />
 
@@ -47,6 +49,7 @@
             android:text="银行名称" />
 
         <EditText
+            android:id="@+id/edt_bank"
             style="@style/EditText_Base"
             android:hint="请输入" />
 
@@ -60,6 +63,7 @@
             android:text="发卡城市" />
 
         <EditText
+            android:id="@+id/edt_issue_city"
             style="@style/EditText_Base"
             android:hint="请输入" />
 

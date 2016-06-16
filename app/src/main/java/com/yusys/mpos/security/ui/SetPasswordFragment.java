@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.note.NoteAPI;
 import com.yusys.mpos.note.ui.CompleteActivity;
 
 import butterknife.Bind;
@@ -27,15 +26,15 @@ public class SetPasswordFragment extends BaseFragment {
 
     private View fragmentView;
     private SetPasswordActivity parentActivity;
-    @Bind(R.id.edt_password)
-    public EditText edt_password;// 密码
-    @Bind(R.id.edt_confirm_password)
-    public EditText edt_confirm_password;// 确认密码
+    @Bind(R.id.edt_16)
+    public EditText edt_pwd;// 密码
+    @Bind(R.id.edt_17)
+    public EditText edt_repwd;// 确认密码
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
-            fragmentView = inflater.inflate(R.layout.fragment_set_password, container, false);
+            fragmentView = inflater.inflate(R.layout.fragment_set16, container, false);
             ButterKnife.bind(this, fragmentView);
             parentActivity = (SetPasswordActivity) getActivity();
         }
@@ -60,7 +59,7 @@ public class SetPasswordFragment extends BaseFragment {
     @OnClick(R.id.btn_confirm)
     void confirm(View view) {
         Intent intent = new Intent(getActivity(), CompleteActivity.class);
-        intent.putExtra("mode", NoteAPI.Mode.SET_PASSWORD);
+        intent.putExtra("mode", 0x01);
         getActivity().startActivity(intent);
         getActivity().finish();
     }

@@ -13,7 +13,18 @@ import com.yusys.mpos.base.ui.ToolbarFragmentActivity;
  */
 public class RegisterActivity extends ToolbarFragmentActivity {
 
-    String mobilePhone;
+    public String mobilePhone;// 0.手机号
+    public int type;// 2.类型:    0-个人    1-商户
+    public String name;// 4.姓名
+    public String id;// 4.身份证号码
+    public String domain;// 5.从事产业
+    public String city;// 6.城市
+    public String address;// 6.地址
+    public String bill;// 6.票据名称
+    public String account;// 7.账户户名
+    public String card;// 7.账户卡号
+    public String bank;// 7.银行名称
+    public String issueCity;// 7.发卡城市
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +42,7 @@ public class RegisterActivity extends ToolbarFragmentActivity {
         fragments.add(new LocationFragment());// 6.登记经营信息
         fragments.add(new ChooseAccountFragment());// 7.选择收款账户
         fragments.add(new SuccessFragment());// 8.提交成功
+        fragments.add(new LocationListFragment());// 9.地址列表
         super.initFragments();
     }
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.note.NoteAPI;
 import com.yusys.mpos.note.ui.CompleteActivity;
 
 import butterknife.ButterKnife;
@@ -60,7 +59,7 @@ public class SwipingCardFragment extends BaseFragment {
     @OnClick(R.id.btn_confirm)
     void confirm() {
         Intent intent = new Intent(getActivity(), CompleteActivity.class);
-        intent.putExtra("mode", NoteAPI.Mode.REFUND);
+        intent.putExtra("mode", 0x02);
         getActivity().startActivity(intent);
         getActivity().finish();
     }

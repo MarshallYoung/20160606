@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.register.ui.RegisterActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,6 +24,15 @@ public class ChooseAccountFragment extends BaseFragment {
 
     private View fragmentView;
     private RegisterActivity parentActivity;
+
+    @Bind(R.id.edt_account)
+    EditText edt_account;// 账户户名
+    @Bind(R.id.edt_card)
+    EditText edt_card;// 卡号
+    @Bind(R.id.edt_bank)
+    EditText edt_bank;// 银行名称
+    @Bind(R.id.edt_issue_city)
+    EditText edt_issueCity;// 发卡城市
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +72,10 @@ public class ChooseAccountFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
+        parentActivity.account = edt_account.getText().toString().trim();
+        parentActivity.card = edt_card.getText().toString().trim();
+        parentActivity.bank = edt_bank.getText().toString().trim();
+        parentActivity.issueCity = edt_issueCity.getText().toString().trim();
         parentActivity.showFragment(parentActivity.fragments.get(8));
     }
 }

@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.register.ui.RegisterActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,6 +63,7 @@ public class ChooseTypeFragment extends BaseFragment {
     @OnClick(R.id.ll_type_personal)
     void typePersonal(View view) {
         Toast.makeText(getActivity(), "个人", Toast.LENGTH_SHORT).show();
+        parentActivity.type = 0;
     }
 
     /**
@@ -72,6 +72,7 @@ public class ChooseTypeFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.ll_type_merchant)
     void typeMerchant(View view) {
+        parentActivity.type = 1;
         parentActivity.showFragment(parentActivity.fragments.get(3));
     }
 }

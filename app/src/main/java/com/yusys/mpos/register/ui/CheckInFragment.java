@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.register.ui.RegisterActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,6 +24,10 @@ public class CheckInFragment extends BaseFragment {
 
     private View fragmentView;
     private RegisterActivity parentActivity;
+    @Bind(R.id.edt_name)
+    EditText edt_name;
+    @Bind(R.id.edt_id)
+    EditText edt_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +67,8 @@ public class CheckInFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
+        parentActivity.name = edt_name.getText().toString().trim();
+        parentActivity.id = edt_id.getText().toString().trim();
         parentActivity.showFragment(parentActivity.fragments.get(5));
     }
 }

@@ -58,8 +58,8 @@ public class GatheringFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case BroadcastAPI.BLUETOOTH_DISCONNECTED:// 未连接
-                    toolbar_connectText.setText("未连接");
                     connectionStatus = PayAPI.Bluetooth.DISCONNECTED;
+                    toolbar_connectText.setText("未连接");
                     break;
                 case BroadcastAPI.BLUETOOTH_CONNECTED:// 已连接
                     connectionStatus = PayAPI.Bluetooth.CONNECTED;

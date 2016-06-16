@@ -46,7 +46,8 @@
         <EditText
             style="@style/EditText_Base"
             android:gravity="right"
-            android:hint="1000" />
+            android:hint="1000"
+            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Bottom">

@@ -7,11 +7,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:background="@color/orange">
 
         <TextView
-            android:id="@+id/tv_adapter_message"
+            android:id="@+id/tv_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

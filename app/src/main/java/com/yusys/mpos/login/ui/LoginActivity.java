@@ -10,10 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yusys.mpos.R;
+import com.yusys.mpos.base.manager.APKManager;
 import com.yusys.mpos.base.manager.DeviceManager;
 import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.Validator;
 import com.yusys.mpos.base.ui.BaseActivity;
-import com.yusys.mpos.login.LoginAPI;
 import com.yusys.mpos.main.ui.MainActivity;
 import com.yusys.mpos.register.ui.RegisterActivity;
 
@@ -30,10 +31,21 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class LoginActivity extends BaseActivity {
 
+    /**
+     * 调试模式,true-不验证合法性,false-验证合法性
+     */
+    private boolean DEBUG = false;
+
+    interface Preferences {
+        String FILENAME = "loginpref";
+        String REMEMBER_USERNAME = "rememberusername";
+        String USERNAME = "username";
+    }
+
     @Bind(R.id.edt_mobile_phone)
     EditText edt_mobile_phone;
-    @Bind(R.id.edt_password)
-    EditText edt_password;
+    @Bind(R.id.edt_16)
+    EditText edt_pwd;
     @Bind(R.id.ckb_remember_username)
     CheckBox ckb_remember;
 
@@ -45,7 +57,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);// 注解绑定控件的框架
-        preferences = getSharedPreferences(LoginAPI.Preferences.FILENAME, MODE_PRIVATE);
+        preferences = getSharedPreferences(Preferences.FILENAME, MODE_PRIVATE);
         initView();
     }
 
@@ -69,15 +81,18 @@ public class LoginActivity extends BaseActivity {
                         }
                     }).show();
         } else {// 未Root
+            edt_pwd.setInputType(0x81);
             pDialog.cancel();
             // 是否记住用户名
-            Boolean remember = preferences.getBoolean(LoginAPI.Preferences.REMEMBER_USERNAME, false);
+            Boolean remember = preferences.getBoolean(Preferences.REMEMBER_USERNAME, false);
             if (remember) {// 回显用户名
-                String username = preferences.getString(LoginAPI.Preferences.USERNAME, "");
+                String username = preferences.getString(Preferences.USERNAME, "");
                 edt_mobile_phone.setText(username);
                 ckb_remember.setChecked(true);
             }
         }
+        String s = APKManager.getSign(this);
+        APKManager.getSingInfo(this);
     }
 
     @SuppressWarnings("unused")
@@ -88,8 +103,8 @@ public class LoginActivity extends BaseActivity {
         if (isChecked) {// 保存用户名
             username = edt_mobile_phone.getText().toString().trim();
         }
-        preferences.edit().putBoolean(LoginAPI.Preferences.REMEMBER_USERNAME, isChecked).apply();
-        preferences.edit().putString(LoginAPI.Preferences.USERNAME, username).apply();
+        preferences.edit().putBoolean(Preferences.REMEMBER_USERNAME, isChecked).apply();
+        preferences.edit().putString(Preferences.USERNAME, username).apply();
     }
 
     // 注册
@@ -112,21 +127,29 @@ public class LoginActivity extends BaseActivity {
     @OnClick(R.id.btn_login)
     void login(View view) {
         String username = edt_mobile_phone.getText().toString().trim();
-        if (username.isEmpty()) {// 用户名为空
-            Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String password = edt_password.getText().toString().trim();
-        if (password.isEmpty()) {// 密码为空
-            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
-            return;
+        String pwd = edt_pwd.getText().toString().trim();
+        if (DEBUG) {// 调试
+
+        } else {// 正常模式
+            if (username.isEmpty()) {// 手机为空
+                Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!Validator.isMobile(username)) {// 手机号不合法
+                Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (pwd.isEmpty()) {// 密码为空
+                Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         String IMEI = DeviceManager.getIMEI(this);
         LogManager.e("==登录界面==", "设备的IMEI是" + IMEI);// 设备唯一识别码
         Boolean isChecked = ckb_remember.isChecked();
         if (isChecked) {// 保存用户名
-            preferences.edit().putBoolean(LoginAPI.Preferences.REMEMBER_USERNAME, true).apply();
-            preferences.edit().putString(LoginAPI.Preferences.USERNAME, username).apply();
+            preferences.edit().putBoolean(Preferences.REMEMBER_USERNAME, true).apply();
+            preferences.edit().putString(Preferences.USERNAME, username).apply();
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

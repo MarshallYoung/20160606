@@ -105,8 +105,9 @@ public class LandiActivity extends BaseActivity {
                 new ConnectDeviceListener() {
                     @Override
                     public void deviceDisconnect() {
-                        dialog.cancel();
                         edt_connectStatus.setText("未连接");
+                        sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
+                        dialog.cancel();
                         Toast.makeText(LandiActivity.this, "设备已断开连接", Toast.LENGTH_SHORT).show();
                     }
 
@@ -120,6 +121,7 @@ public class LandiActivity extends BaseActivity {
                     @Override
                     public void connectFailed(String errorMesg) {
                         edt_connectStatus.setText("未连接");
+                        sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
                         dialog.cancel();
                         Toast.makeText(LandiActivity.this, "设备连接失败", Toast.LENGTH_SHORT).show();
                     }

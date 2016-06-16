@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseActivity;
-import com.yusys.mpos.note.NoteAPI;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,11 +42,11 @@ public class CompleteActivity extends BaseActivity {
 
     private void initView() {
         int mode = getIntent().getIntExtra("mode", 0x00);
-        if (mode == NoteAPI.Mode.SET_PASSWORD) {// 设置密码成功
+        if (mode == 0x01) {// 设置密码成功
             toolbar_title.setText("完成");
             tv_note.setText("密码设置成功,请重新登录");
             btn_complete.setText("重新登录");
-        } else if (mode == NoteAPI.Mode.REFUND) {// 还款成功
+        } else if (mode == 0x02) {// 还款成功
             toolbar_title.setText("成功");
             tv_note.setText("还款成功");
             btn_complete.setText("确定");

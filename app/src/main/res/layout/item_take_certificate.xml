@@ -24,7 +24,8 @@
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/icon_add" />
+            android:background="@drawable/icon_add"
+            android:scaleType="fitCenter" />
     </RelativeLayout>
 
     <TextView

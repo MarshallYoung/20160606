@@ -25,7 +25,8 @@
             android:id="@+id/edt_mobile_phone"
             style="@style/EditText_Base"
             android:hint="请输入手机号"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:maxLength="11" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Bottom">
@@ -37,10 +38,9 @@
             android:src="@drawable/icon_lock" />
 
         <EditText
-            android:id="@+id/edt_password"
+            android:id="@+id/edt_16"
             style="@style/EditText_Base"
-            android:hint="请输入密码"
-            android:inputType="textPassword" />
+            android:hint="请输入密码" />
     </LinearLayout>
 
     <CheckBox

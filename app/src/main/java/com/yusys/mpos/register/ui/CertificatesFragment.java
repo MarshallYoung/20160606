@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.yusys.mpos.R;
@@ -89,9 +90,13 @@ public class CertificatesFragment extends BaseFragment {
             } else {
                 Bitmap bm = (Bitmap) intent.getExtras().get("data");
 //                Bitmap bm1 = adjustPhotoRotation(bm, 270);// 旋转图片
-                ImageView imageView = (ImageView) gv_certificates.getChildAt(requestCode)
+                ImageView iv_certificatePhoto = (ImageView) gv_certificates.getChildAt(requestCode)
                         .findViewById(R.id.iv_certificate_photo);
-                imageView.setImageBitmap(bm);
+                iv_certificatePhoto.setImageBitmap(bm);
+                // 改变右下角图片
+                ImageButton ib_takePhoto = (ImageButton) gv_certificates.getChildAt(requestCode)
+                        .findViewById(R.id.ib_take_photo);
+                ib_takePhoto.setImageResource(R.drawable.icon_right);
             }
         }
 //        if (resultCode == Activity.RESULT_OK) {

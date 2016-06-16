@@ -12,10 +12,10 @@
         android:layout_margin="20dp"
         android:background="@drawable/selector_btn_connect"
         android:gravity="center"
-        android:padding="5dp">
+        android:padding="8dp">
 
         <View
-            android:layout_width="12dp"
+            android:layout_width="10dp"
             android:layout_height="12dp"
             android:background="@drawable/icon_location" />
 
@@ -33,22 +33,22 @@
             style="@style/TextView_Header"
             android:text="所在城市" />
 
-        <EditText
-            android:id="@+id/edt_city"
+        <TextView
+            android:id="@+id/tv_city"
             style="@style/EditText_Base" />
-
-        <View style="@style/Icon_Arrow.Right_Gray" />
     </LinearLayout>
 
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout
+        android:id="@+id/ll_location"
+        style="@style/Cell_Bottom">
 
         <TextView
             style="@style/TextView_Header"
             android:text="具体位置" />
 
-        <EditText
-            android:id="@+id/edt_location"
+        <TextView
+            android:id="@+id/tv_location"
             style="@style/EditText_Base"
             android:ellipsize="end" />
 

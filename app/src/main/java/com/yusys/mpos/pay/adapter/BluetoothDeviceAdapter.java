@@ -90,7 +90,6 @@ public class BluetoothDeviceAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-
         @Bind(R.id.tv_device_name)
         TextView tv_deviceName;
         @Bind(R.id.tv_bluetooth_address)

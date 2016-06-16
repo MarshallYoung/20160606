@@ -38,7 +38,8 @@
 
         <EditText
             style="@style/EditText_Base"
-            android:hint="不低于10元,免手续费" />
+            android:hint="不低于10元,免手续费"
+            android:inputType="number" />
     </LinearLayout>
 
     <Button

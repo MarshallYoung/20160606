@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -14,8 +15,8 @@ import com.baidu.location.Poi;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.register.ui.RegisterActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -34,10 +35,10 @@ public class LocationFragment extends BaseFragment {
 
     private View fragmentView;
     private RegisterActivity parentActivity;
-    @Bind(R.id.edt_city)
-    EditText edt_city;
-    @Bind(R.id.edt_location)
-    EditText edt_location;
+    @Bind(R.id.tv_city)
+    TextView tv_city;
+    @Bind(R.id.tv_location)
+    public TextView tv_location;
     @Bind(R.id.edt_bill)
     EditText edt_bill;
 
@@ -50,8 +51,8 @@ public class LocationFragment extends BaseFragment {
         @Override
         public void onReceiveLocation(BDLocation location) {
             if (location != null) {
-                edt_city.setText(location.getCity());
-                edt_location.setText(location.getAddrStr());
+                tv_city.setText(location.getCity());
+                tv_location.setText(location.getLocationDescribe());
                 mLocationClient.unRegisterLocationListener(listener);
                 mLocationClient.stop(); // 停止定位服务
             }
@@ -114,7 +115,18 @@ public class LocationFragment extends BaseFragment {
                 }
             }
             LogManager.e("百度定位", sb.toString());
-
+            LocationListFragment fragment = (LocationListFragment) parentActivity.fragments.get(9);
+            if (fragment.locationArray == null) {
+                fragment.locationArray = new ArrayList<>();
+            } else {
+                fragment.locationArray.clear();
+            }
+            if (list != null) {
+                for (Poi p : list) {
+                    fragment.locationArray.add(p.getName());
+                }
+                fragment.adapter.notifyDataSetChanged();
+            }
         }
     };
 
@@ -163,11 +175,23 @@ public class LocationFragment extends BaseFragment {
     }
 
     /**
+     * 显示地址列表
+     */
+    @SuppressWarnings("unused")
+    @OnClick(R.id.ll_location)
+    void showLocationList(View view) {
+        parentActivity.showFragment(parentActivity.fragments.get(9));
+    }
+
+    /**
      * 下一步
      */
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
+        parentActivity.city = tv_city.getText().toString().trim();
+        parentActivity.address = tv_location.getText().toString().trim();
+        parentActivity.bill = edt_bill.getText().toString().trim();
         parentActivity.showFragment(parentActivity.fragments.get(7));
     }
 }

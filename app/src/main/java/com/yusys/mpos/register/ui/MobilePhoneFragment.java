@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.register.ui.RegisterActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -61,7 +60,7 @@ public class MobilePhoneFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
-        String phoneNumber = edt_mobilePhone.getText().toString().trim();
+        parentActivity.mobilePhone = edt_mobilePhone.getText().toString().trim();
         parentActivity.showFragment(parentActivity.fragments.get(1));
     }
 }
