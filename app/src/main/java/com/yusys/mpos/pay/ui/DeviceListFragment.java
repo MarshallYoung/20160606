@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.landicorp.android.mpos.newReader.LandiReader;
+import com.landicorp.android.mpos.newReader.PublicInterface;
+import com.landicorp.robert.comm.api.CommunicationManagerBase;
+import com.landicorp.robert.comm.api.DeviceInfo;
 import com.yusys.mpos.R;
+import com.yusys.mpos.base.BroadcastAPI;
+import com.yusys.mpos.base.YXApplication;
+import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.base.ui.BaseFragment;
 import com.yusys.mpos.pay.adapter.BluetoothDeviceAdapter;
 
@@ -24,6 +32,7 @@ import java.util.TimerTask;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * 蓝牙设备列表
@@ -47,6 +56,8 @@ public class DeviceListFragment extends BaseFragment {
     private BluetoothAdapter bluetoothAdapter;// 蓝牙搜索适配器
     private BluetoothDeviceAdapter deviceAdapter;// 设备适配器
 
+    private LandiReader reader;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
@@ -64,6 +75,7 @@ public class DeviceListFragment extends BaseFragment {
             // 注册搜索完时的receiver
             filter = new IntentFilter(android.bluetooth.BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
             getActivity().registerReceiver(bluetoothReceiver, filter);
+            reader = ((YXApplication) getActivity().getApplication()).landiReader;
         }
         // 缓存Fragment,避免重新执行onCreateView
         ViewGroup parentView = (ViewGroup) fragmentView.getParent();
@@ -96,6 +108,7 @@ public class DeviceListFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         getActivity().unregisterReceiver(bluetoothReceiver);
+        reader = null;
     }
 
     /**
@@ -118,7 +131,9 @@ public class DeviceListFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_stop_search)
     void stopSearching(View view) {
-        task.cancel();
+        if (task != null) {
+            task.cancel();
+        }
         // 如果正在搜索，就先取消搜索
         if (bluetoothAdapter.isDiscovering()) {
             tv_note.setText("停止搜索");
@@ -136,8 +151,10 @@ public class DeviceListFragment extends BaseFragment {
             // 获得已经搜索到的蓝牙设备
             if (action.equals(BluetoothDevice.ACTION_FOUND)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // 搜索到的不是已经绑定的蓝牙设备
-                deviceAdapter.addDevice(device);
+//                if (device.getName().startsWith("M35")) {
+                    // 搜索到的不是已经绑定的蓝牙设备
+                    deviceAdapter.addDevice(device);
+//                }
             } else if (action.equals(android.bluetooth.BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {// 搜索完成
                 task.cancel();
                 tv_note.setText("搜索完成");
@@ -151,10 +168,40 @@ public class DeviceListFragment extends BaseFragment {
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getActivity(), LandiActivity.class);
             BluetoothDevice device = deviceAdapter.getDeviceInfo(position);
-            intent.putExtra("deviceinfo", device);
-            getActivity().startActivity(intent);
+            final SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+            dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            dialog.setTitleText("连接设备...");
+            dialog.setCancelable(false);
+            dialog.show();
+            LogManager.e("==蓝牙地址==", device.getAddress());
+            DeviceInfo info = new DeviceInfo();
+            info.setIdentifier(device.getAddress());
+            info.setName(device.getName());
+            info.setDevChannel(CommunicationManagerBase.DeviceCommunicationChannel.BLUETOOTH);
+            reader.connectDeviceWithBluetooth(info.getIdentifier(),
+                    new PublicInterface.ConnectDeviceListener() {
+                        @Override
+                        public void deviceDisconnect() {
+                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
+                            dialog.cancel();
+                            showDialog(false);
+                        }
+
+                        @Override
+                        public void connectSuccess() {
+                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_CONNECTED));
+                            dialog.cancel();
+                            showDialog(true);
+                        }
+
+                        @Override
+                        public void connectFailed(String errorMesg) {
+                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
+                            dialog.cancel();
+                            showDialog(false);
+                        }
+                    });
         }
     };
 
@@ -183,5 +230,44 @@ public class DeviceListFragment extends BaseFragment {
             }
         };
         timer.schedule(task, 800, 800);
+    }
+
+    private void showDialog(boolean success) {
+        if (success) {// 连接成功
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("提示")
+                    .setContentText("连接成功")
+                    .setConfirmText("确定")
+                    .showCancelButton(true)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                            getActivity().finish();
+                        }
+                    }).show();
+        } else {// 连接失败
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("提示")
+                    .setContentText("连接失败")
+                    .showCancelButton(true)
+                    .setCancelText("重新连接")
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                        }
+                    })
+                    .setConfirmText("退出")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                            getActivity().finish();
+                        }
+                    })
+                    .show();
+        }
+
     }
 }

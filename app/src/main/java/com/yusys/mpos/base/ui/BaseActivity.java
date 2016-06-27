@@ -33,6 +33,12 @@ public class BaseActivity extends Activity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        hideKeyboard();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
@@ -42,9 +48,7 @@ public class BaseActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {// 点击空白区域隐藏输入法
-            if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
-                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-            }
+            hideKeyboard();
         }
         return super.onTouchEvent(event);
     }
@@ -59,6 +63,17 @@ public class BaseActivity extends Activity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    public void hideKeyboard() {
+        if (manager.isActive()) {// 输入法打开
+            if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null) {
+                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
     //    @Override

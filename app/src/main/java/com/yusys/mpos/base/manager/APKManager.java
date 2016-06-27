@@ -21,6 +21,11 @@ import java.util.List;
 public class APKManager {
 
     /**
+     * 调试模式,true-不验证合法性,false-验证合法性
+     */
+    public static boolean DEBUG = false;
+
+    /**
      * 得到签名信息
      */
     public static String getSign(Context context) {

@@ -10,6 +10,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_immediately"
             style="@style/Cell_Single"
             android:layout_marginTop="20dp">
 
@@ -24,8 +25,12 @@
                 android:text="默认即时到帐" />
 
             <CheckBox
+                android:id="@+id/cb_immediately"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
         </LinearLayout>
 
         <TextView

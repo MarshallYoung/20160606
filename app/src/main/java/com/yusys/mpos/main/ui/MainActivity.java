@@ -31,7 +31,7 @@ public class MainActivity extends FragmentActivity {
     private Class classes[] = {GatheringFragment.class, PaymentFragment.class, MeFragment.class};
     private int selectors[] = {R.drawable.selector_tab_gathering,
             R.drawable.selector_tab_payment, R.drawable.selector_tab_me};
-    private String titles[] = {"付款", "收款", "我"};
+    private String titles[] = {"收款", "付款", "我"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

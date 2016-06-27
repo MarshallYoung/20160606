@@ -1,11 +1,13 @@
 package com.yusys.mpos.register.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -15,6 +17,7 @@ import com.baidu.location.Poi;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.base.ui.BaseFragment;
+import com.yusys.mpos.base.ui.ListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * 登记店铺信息界面
@@ -41,6 +45,7 @@ public class LocationFragment extends BaseFragment {
     public TextView tv_location;
     @Bind(R.id.edt_bill)
     EditText edt_bill;
+    SweetAlertDialog pDialog;
 
     public LocationClient mLocationClient;
 
@@ -55,6 +60,9 @@ public class LocationFragment extends BaseFragment {
                 tv_location.setText(location.getLocationDescribe());
                 mLocationClient.unRegisterLocationListener(listener);
                 mLocationClient.stop(); // 停止定位服务
+                if (pDialog != null && pDialog.isShowing()) {
+                    pDialog.cancel();
+                }
             }
             //Receive Location
             StringBuffer sb = new StringBuffer(256);
@@ -115,15 +123,15 @@ public class LocationFragment extends BaseFragment {
                 }
             }
             LogManager.e("百度定位", sb.toString());
-            LocationListFragment fragment = (LocationListFragment) parentActivity.fragments.get(9);
-            if (fragment.locationArray == null) {
-                fragment.locationArray = new ArrayList<>();
+            ListFragment fragment = (ListFragment) parentActivity.fragments.get(9);
+            if (fragment.array == null) {
+                fragment.array = new ArrayList<>();
             } else {
-                fragment.locationArray.clear();
+                fragment.array.clear();
             }
             if (list != null) {
                 for (Poi p : list) {
-                    fragment.locationArray.add(p.getName());
+                    fragment.array.add(p.getName());
                 }
                 fragment.adapter.notifyDataSetChanged();
             }
@@ -175,6 +183,24 @@ public class LocationFragment extends BaseFragment {
     }
 
     /**
+     * 得到地址
+     */
+    @SuppressWarnings("unused")
+    @OnClick(R.id.ll_get_location)
+    void getLocation(View view) {
+        pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("正在获得地址...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        mLocationClient.stop();
+        tv_city.setText("");
+        tv_location.setText("");
+        mLocationClient.registerLocationListener(listener);
+        mLocationClient.start();
+    }
+
+    /**
      * 显示地址列表
      */
     @SuppressWarnings("unused")
@@ -189,9 +215,20 @@ public class LocationFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
-        parentActivity.city = tv_city.getText().toString().trim();
-        parentActivity.address = tv_location.getText().toString().trim();
-        parentActivity.bill = edt_bill.getText().toString().trim();
+        String city = tv_city.getText().toString().trim();
+        String address = tv_location.getText().toString().trim();
+        String bill = edt_bill.getText().toString().trim();
+        if (city.isEmpty() || address.isEmpty()) {
+            Toast.makeText(getActivity(), "请获得地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (bill.isEmpty()) {
+            Toast.makeText(getActivity(), "请输入票据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        parentActivity.city = city;
+        parentActivity.address = address;
+        parentActivity.bill = bill;
         parentActivity.showFragment(parentActivity.fragments.get(7));
     }
 }

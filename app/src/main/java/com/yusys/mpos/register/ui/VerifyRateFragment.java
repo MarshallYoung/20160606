@@ -39,11 +39,6 @@ public class VerifyRateFragment extends BaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("核对费率");

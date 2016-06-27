@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
@@ -67,8 +68,19 @@ public class CheckInFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
-        parentActivity.name = edt_name.getText().toString().trim();
-        parentActivity.id = edt_id.getText().toString().trim();
+        parentActivity.hideKeyboard();
+        String name = edt_name.getText().toString().trim();
+        String id = edt_id.getText().toString().trim();
+        if (!(id.length() == 15 || id.length() == 18)) {
+            Toast.makeText(getActivity(), "请输入正确的身份证", Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        if (!Validator.isIDCard(name)) {
+//            Toast.makeText(getActivity(), "请输入正确的身份证号", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+        parentActivity.name = name;
+        parentActivity.id = id;
         parentActivity.showFragment(parentActivity.fragments.get(5));
     }
 }

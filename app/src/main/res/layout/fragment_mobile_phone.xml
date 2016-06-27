@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        style="@style/Cell_Single"
-        android:layout_marginTop="100dp">
+        style="@style/Cell_Top"
+        android:layout_marginTop="60dp">
 
         <ImageView
             android:layout_width="@dimen/icon_length"
@@ -19,7 +19,34 @@
             android:id="@+id/edt_mobile_phone"
             style="@style/EditText_Base"
             android:hint="请输入手机号"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:maxLength="@integer/phone_length" />
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/Cell_Bottom">
+
+        <ImageView
+            android:layout_width="@dimen/icon_length"
+            android:layout_height="@dimen/icon_length"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_mobile_phone" />
+
+        <EditText
+            android:id="@+id/edt_identifying"
+            style="@style/EditText_Base"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:hint="验证码"
+            android:inputType="number"
+            android:maxLength="@integer/identifying_length" />
+
+        <Button
+            android:id="@+id/btn_get_identifying"
+            style="@style/Button_Transparent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="获取验证码" />
     </LinearLayout>
 
     <Button

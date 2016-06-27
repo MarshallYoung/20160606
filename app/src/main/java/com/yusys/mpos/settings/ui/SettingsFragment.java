@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.manager.AppManager;
 import com.yusys.mpos.base.ui.BaseFragment;
 import com.yusys.mpos.login.ui.LoginActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -26,6 +28,8 @@ public class SettingsFragment extends BaseFragment {
 
     private View fragmentView;
     private SettingsActivity parentActivity;
+    @Bind(R.id.cb_immediately)
+    CheckBox cb_immediately;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +61,15 @@ public class SettingsFragment extends BaseFragment {
                 parentActivity.finish();
             }
         });
+    }
+
+    /**
+     * 即时到帐
+     */
+    @SuppressWarnings("unused")
+    @OnClick(R.id.ll_immediately)
+    void immediately(View view) {
+        cb_immediately.setChecked(!cb_immediately.isChecked());
     }
 
     /**

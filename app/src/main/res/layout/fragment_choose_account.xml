@@ -22,7 +22,7 @@
         <EditText
             android:id="@+id/edt_account"
             style="@style/EditText_Base"
-            android:hint="宇信科技" />
+            android:hint="请输入" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Middle">
@@ -34,38 +34,37 @@
         <EditText
             android:id="@+id/edt_card"
             style="@style/EditText_Base"
-            android:hint="请输入" />
-
-        <Button
-            android:layout_width="@dimen/icon_length"
-            android:layout_height="@dimen/icon_length"
-            android:background="@drawable/icon_card_button" />
+            android:hint="请输入"
+            android:inputType="number"
+            android:maxLength="@integer/card_length" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout
+        android:id="@+id/ll_bank"
+        style="@style/Cell_Middle">
 
         <TextView
             style="@style/TextView_Header"
             android:text="银行名称" />
 
-        <EditText
-            android:id="@+id/edt_bank"
-            style="@style/EditText_Base"
-            android:hint="请输入" />
+        <TextView
+            android:id="@+id/tv_bank"
+            style="@style/EditText_Base" />
 
         <View style="@style/Icon_Arrow.Right_Gray" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout
+        android:id="@+id/ll_issue_city"
+        style="@style/Cell_Bottom">
 
         <TextView
             style="@style/TextView_Header"
             android:text="发卡城市" />
 
-        <EditText
-            android:id="@+id/edt_issue_city"
-            style="@style/EditText_Base"
-            android:hint="请输入" />
+        <TextView
+            android:id="@+id/tv_issue_city"
+            style="@style/EditText_Base" />
 
         <View style="@style/Icon_Arrow.Right_Gray" />
     </LinearLayout>

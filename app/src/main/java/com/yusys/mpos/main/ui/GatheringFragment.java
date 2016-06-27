@@ -15,9 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.landicorp.android.mpos.newReader.LandiReader;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.BroadcastAPI;
-import com.yusys.mpos.pay.PayAPI;
+import com.yusys.mpos.base.YXApplication;
+import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.pay.ui.ConnectionActivity;
 import com.yusys.mpos.pay.ui.PayActivity;
 
@@ -47,8 +49,10 @@ public class GatheringFragment extends Fragment {
     LinearLayout ll_spinner;// 下拉列表
 
     private double amount;// 金额
-    private int connectionStatus;// 连接状态
+    public boolean isConnected = false;// 是否连接
     private BluetoothAdapter bluetoothAdapter;
+
+    private LandiReader reader;
 
     /**
      * 接收到连接蓝牙设备的广播
@@ -58,11 +62,11 @@ public class GatheringFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case BroadcastAPI.BLUETOOTH_DISCONNECTED:// 未连接
-                    connectionStatus = PayAPI.Bluetooth.DISCONNECTED;
+                    isConnected = false;
                     toolbar_connectText.setText("未连接");
                     break;
                 case BroadcastAPI.BLUETOOTH_CONNECTED:// 已连接
-                    connectionStatus = PayAPI.Bluetooth.CONNECTED;
+                    isConnected = true;
                     toolbar_connectText.setText("已连接");
                     break;
             }
@@ -85,6 +89,7 @@ public class GatheringFragment extends Fragment {
                 toolbar_connect.setEnabled(false);
                 toolbar_connectText.setText("手机不支持蓝牙");
             }
+            reader = ((YXApplication) getActivity().getApplication()).landiReader;
         }
         // 缓存Fragment,避免重新执行onCreateView
         ViewGroup parentView = (ViewGroup) fragmentView.getParent();
@@ -92,6 +97,17 @@ public class GatheringFragment extends Fragment {
             parentView.removeView(fragmentView);
         }
         return fragmentView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isConnected = reader.isConnect();
+        if (isConnected) {
+            toolbar_connectText.setText("已连接");
+        } else {
+            toolbar_connectText.setText("未连接");
+        }
     }
 
     @Override
@@ -105,6 +121,7 @@ public class GatheringFragment extends Fragment {
         super.onDestroy();
         ButterKnife.unbind(this);
         getActivity().unregisterReceiver(bluetoothReceiver);
+        reader = null;
     }
 
     /**
@@ -158,32 +175,33 @@ public class GatheringFragment extends Fragment {
             return;
         }
         // 判断连接状态
-        if (connectionStatus == PayAPI.Bluetooth.DISCONNECTED) {
-            final SweetAlertDialog aDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
-            aDialog.setTitleText("连接支付终端").setContentText("尚未连接支付终端,是否连接?")
+        if (reader.isConnect()) {// 已连接
+            toolbar_connectText.setText("已连接");
+            Intent payIntent = new Intent(getActivity(), PayActivity.class);
+            payIntent.putExtra("amount", amount);
+            startActivity(payIntent);
+            LogManager.e("== 交易金额 ==", "" + amount);
+            clear(null);//清理金额
+        } else {// 未连接
+            toolbar_connectText.setText("未连接");
+            SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE);
+            dialog.setTitleText("注意").setContentText("尚未连接pos,是否连接?")
                     .setConfirmText("连接")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            aDialog.cancel();
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.cancel();
                             Intent intent = new Intent(getActivity(), ConnectionActivity.class);
-                            startActivityForResult(intent, PayAPI.RequestCode.BLUETOOTH);
-                            getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+                            startActivity(intent);
                         }
                     })
                     .setCancelText("取消")
                     .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            aDialog.cancel();
+                            sweetAlertDialog.cancel();
                         }
                     }).show();
-        } else if (connectionStatus == PayAPI.Bluetooth.CONNECTED) {
-            Intent payIntent = new Intent(getActivity(), PayActivity.class);
-            payIntent.putExtra(PayAPI.Payment.AMOUNT, amount);
-            startActivity(payIntent);
-            getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-            clear(null);//清理金额
         }
     }
 
@@ -193,31 +211,32 @@ public class GatheringFragment extends Fragment {
     @SuppressWarnings("unused")
     @OnClick({R.id.toolbar_connect, R.id.ll_device_settings})
     void connect(View view) {
-        if (connectionStatus == PayAPI.Bluetooth.DISCONNECTED) {// 未连接
-            Intent intent = new Intent(getActivity(), ConnectionActivity.class);
-            startActivityForResult(intent, PayAPI.RequestCode.BLUETOOTH);
-            getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-        } else if (connectionStatus == PayAPI.Bluetooth.CONNECTED) {// 已连接
-            final SweetAlertDialog aDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
-            aDialog.setTitleText("注意").setContentText("已经连接支付终端,是否重新连接?")
+        if (reader.isConnect()) {// 已连接
+            toolbar_connectText.setText("已连接");
+            SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
+            dialog.setTitleText("注意").setContentText("已经连接支付终端,是否重新连接?")
                     .setConfirmText("重新连接")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            aDialog.cancel();
-                            // TODO 断开蓝牙连接
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.cancel();
+                            reader.closeDevice();
+                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
                             Intent intent = new Intent(getActivity(), ConnectionActivity.class);
-                            startActivityForResult(intent, PayAPI.RequestCode.BLUETOOTH);
-                            getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+                            startActivity(intent);
                         }
                     })
                     .setCancelText("取消")
                     .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            aDialog.cancel();
+                            sweetAlertDialog.cancel();
                         }
                     }).show();
+        } else {// 未连接
+            toolbar_connectText.setText("未连接");
+            Intent intent = new Intent(getActivity(), ConnectionActivity.class);
+            startActivity(intent);
         }
     }
 

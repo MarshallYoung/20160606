@@ -55,6 +55,7 @@
         <activity android:name=".login.ui.LoginActivity" />
         <!-- 注册 -->
         <activity android:name=".register.ui.RegisterActivity" />
+        <!-- 找回验证码 -->
         <!-- 主界面 -->
         <activity
             android:name=".main.ui.MainActivity"
@@ -68,7 +69,6 @@
         <!-- 联迪 -->
         <activity android:name=".pay.ui.LandiActivity" />
         <!-- 百富 -->
-        <activity android:name=".pay.ui.PaxActivity" />
         <activity android:name=".pay.pax.PaxMainActivity" />
         <!-- 设备适配 -->
         <activity android:name=".pay.ui.ConnectionActivity" />
@@ -88,6 +88,5 @@
         <!-- 我的付款 -->
         <activity android:name=".merchant.ui.MyPaymentActivity" />
         <!-- 通知 -->
-        <activity android:name=".note.ui.CompleteActivity" />
     </application>
 </manifest>

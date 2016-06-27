@@ -1,6 +1,5 @@
 package com.yusys.mpos.register.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
-import com.yusys.mpos.security.ui.SetPasswordActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,22 +47,12 @@ public class SuccessFragment extends BaseFragment {
     public void onReveal() {
         super.onReveal();
         parentActivity.toolbar_title.setText("提交成功");
-        parentActivity.toolbar_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                parentActivity.finish();
-            }
-        });
+        parentActivity.toolbar_back.setVisibility(View.GONE);
     }
 
-    /**
-     * 设置密码
-     */
     @SuppressWarnings("unused")
-    @OnClick(R.id.btn_set_password)
-    void setPassword(View view) {
-        Intent intent = new Intent(parentActivity, SetPasswordActivity.class);
-        startActivity(intent);
+    @OnClick(R.id.btn_quit)
+    void quit(View view) {
         getActivity().finish();
     }
 }

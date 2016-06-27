@@ -19,6 +19,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_gesture"
         style="@style/Cell_Single"
         android:layout_marginTop="20dp">
 
@@ -27,7 +28,11 @@
             android:text="手势密码" />
 
         <CheckBox
+            android:id="@+id/cb_gesture"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
     </LinearLayout>
 </LinearLayout>

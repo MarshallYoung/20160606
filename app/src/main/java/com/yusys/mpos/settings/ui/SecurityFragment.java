@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,6 +24,8 @@ public class SecurityFragment extends BaseFragment {
 
     private View fragmentView;
     SettingsActivity parentActivity;
+    @Bind(R.id.cb_gesture)
+    CheckBox cb_gesture;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,5 +66,14 @@ public class SecurityFragment extends BaseFragment {
     @OnClick(R.id.ll_change_password)
     void changePassword(View view) {
         parentActivity.showFragment(parentActivity.fragments.get(3));
+    }
+
+    /**
+     * 手势密码
+     */
+    @SuppressWarnings("unused")
+    @OnClick(R.id.ll_gesture)
+    void gesture(View view) {
+        cb_gesture.setChecked(!cb_gesture.isChecked());
     }
 }

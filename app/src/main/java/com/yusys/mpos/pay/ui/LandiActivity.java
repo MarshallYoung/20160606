@@ -15,17 +15,16 @@ import com.landicorp.android.mpos.newReader.LandiReader;
 import com.landicorp.android.mpos.newReader.MposCardInfo;
 import com.landicorp.android.mpos.newReader.PublicInterface;
 import com.landicorp.android.mpos.newReader.PublicInterface.ConnectDeviceListener;
-import com.landicorp.android.mpos.reader.LandiMPos;
 import com.landicorp.mpos.reader.BasicReaderListeners;
 import com.landicorp.mpos.util.StringUtil;
 import com.landicorp.robert.comm.api.CommunicationManagerBase;
 import com.landicorp.robert.comm.api.DeviceInfo;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.BroadcastAPI;
+import com.yusys.mpos.base.YXApplication;
 import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.base.ui.BaseActivity;
 import com.yusys.mpos.pay.PayAPI;
-import com.yusys.mpos.pay.manager.LandiManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +39,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class LandiActivity extends BaseActivity {
 
-    private LandiManager landiManager;
     @Bind(R.id.toolbar_title)
     TextView toolbar_title;
     @Bind(R.id.edt_amount)
@@ -52,9 +50,7 @@ public class LandiActivity extends BaseActivity {
     SweetAlertDialog dialog;
 
     private BluetoothDevice device;
-
     private LandiReader reader;
-    private LandiMPos mPos;
     private ReceiveBroadCast receiceBrocast;
 
     public class ReceiveBroadCast extends BroadcastReceiver {
@@ -71,13 +67,17 @@ public class LandiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landi);
         ButterKnife.bind(this);
-        device = (BluetoothDevice) getIntent().getExtras().get(PayAPI.Bluetooth.DEVICE_INFO);
-        reader = LandiReader.getInstance(getApplicationContext());
-        mPos = LandiMPos.getInstance(getApplicationContext());
+        reader = ((YXApplication) getApplication()).landiReader;
         if (device == null) {// 设备是空的话就会退出
             finish();
         }
         initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        reader = null;
     }
 
     private void initView() {
@@ -139,13 +139,9 @@ public class LandiActivity extends BaseActivity {
         dialog.setTitleText("正在关闭连接...");
         dialog.setCancelable(false);
         dialog.show();
-        mPos.closeDevice(new BasicReaderListeners.CloseDeviceListener() {
-            @Override
-            public void closeSucc() {
-                edt_connectStatus.setText("未连接");
-                dialog.cancel();
-            }
-        });
+        reader.closeDevice();
+        edt_connectStatus.setText("未连接");
+        dialog.cancel();
     }
 
     /**
@@ -210,7 +206,7 @@ public class LandiActivity extends BaseActivity {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_start_transaction)
     void startTransaction(View view) {
-        reader.readCard(10000000, 30, "宇信", true, true, readCardListener);
+        reader.readCard(4100, 30, "宇信", true, true, readCardListener);
     }
 
     PublicInterface.ReadCardListener readCardListener = new PublicInterface.ReadCardListener() {
@@ -279,7 +275,8 @@ public class LandiActivity extends BaseActivity {
             } else {
                 tString += "磁条卡";
             }
-            tString += "   有效期到" + cardInfo.getCardExpDate() + "\n";
+            tString += "\n金额是:" + cardInfo.getAmount();
+            tString += "\n有效期到" + cardInfo.getCardExpDate() + "\n";
             tString += "卡号" + cardInfo.getAccount() + "\n";
             if (cardInfo.getTrack1Data() != null
                     && cardInfo.getTrack1Data().length() > 0) {

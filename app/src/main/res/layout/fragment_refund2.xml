@@ -25,13 +25,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_bank"
                 style="@style/TextView_Header"
-                android:text="广发银行" />
+                android:text="银行" />
 
             <TextView
+                android:id="@+id/tv_card"
                 style="@style/TextView_Header"
-                android:layout_marginTop="5dp"
-                android:text="6212 2600 **** **** 789" />
+                android:layout_marginTop="5dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -43,24 +44,29 @@
             style="@style/TextView_Header"
             android:text="还款金额" />
 
-        <EditText
+        <TextView
+            android:id="@+id/tv_amount"
             style="@style/EditText_Base"
-            android:gravity="right"
-            android:hint="1000"
-            android:inputType="number" />
+            android:gravity="right" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout
+        android:id="@+id/ll_arrival_time"
+        style="@style/Cell_Bottom">
 
         <TextView
             style="@style/TextView_Header"
             android:text="到账时间" />
 
-        <EditText
+        <TextView
+            android:id="@+id/tv_arrival_time"
             style="@style/EditText_Base"
             android:gravity="right"
+            android:paddingRight="30dp"
             android:text="立即到账"
             android:textColor="@color/orange" />
+
+        <View style="@style/Icon_Arrow.Right_Gray" />
     </LinearLayout>
 
     <TextView

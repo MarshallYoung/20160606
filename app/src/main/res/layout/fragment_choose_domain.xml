@@ -9,39 +9,6 @@
         style="@style/TextView_Note"
         android:text="滚动选择最近您经营范围的选项" />
 
-    <RadioGroup
-        android:id="@+id/rg_domains"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:background="@color/white">
-
-        <RadioButton
-            android:id="@+id/rb_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="便利店/超市" />
-
-        <RadioButton
-            android:id="@+id/rb_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="化妆品商店" />
-
-        <RadioButton
-            android:id="@+id/rb_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="美容美发美甲" />
-
-        <RadioButton
-            android:id="@+id/rb_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="鲜花水果" />
-    </RadioGroup>
-
     <ListView
         android:id="@+id/lv_domains"
         android:layout_width="match_parent"

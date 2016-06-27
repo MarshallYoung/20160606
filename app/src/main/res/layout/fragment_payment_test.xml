@@ -32,7 +32,8 @@
         android:id="@+id/btn_test"
         style="@style/Button_Transparent"
         android:layout_marginTop="40dp"
-        android:text="测试" />
+        android:text="测试"
+        android:visibility="gone" />
 
     <GridView
         android:id="@+id/gv_function"

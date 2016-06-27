@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.ui.BaseFragment;
@@ -44,7 +45,8 @@ public class CertificatesFragment extends BaseFragment {
     CertificateAdapter adapter;
     private ArrayList itemList;
     private int[] images = {R.drawable.putin1, R.drawable.idcard_back, R.drawable.putin3, R.drawable.credit_card};
-    private String[] texts = {"身份证正面", "身份证反面", "个人在门店照", "信用卡正面照"};
+    private String[] texts = {"身份证正面", "身份证反面", "个人在门店照", "卡片正面照"};
+    private boolean[] photoTaked = {false, false, false, false};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,6 +99,9 @@ public class CertificatesFragment extends BaseFragment {
                 ImageButton ib_takePhoto = (ImageButton) gv_certificates.getChildAt(requestCode)
                         .findViewById(R.id.ib_take_photo);
                 ib_takePhoto.setImageResource(R.drawable.icon_right);
+                if (requestCode >= 0 && requestCode <= 3) {
+                    photoTaked[requestCode] = true;
+                }
             }
         }
 //        if (resultCode == Activity.RESULT_OK) {
@@ -127,6 +132,12 @@ public class CertificatesFragment extends BaseFragment {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
+        for (int i = 0; i < 4; i++) {
+            if (!photoTaked[i]) {
+                Toast.makeText(getActivity(), "请上传照片", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         parentActivity.showFragment(parentActivity.fragments.get(4));
     }
 

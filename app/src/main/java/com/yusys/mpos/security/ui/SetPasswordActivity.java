@@ -20,13 +20,15 @@ public class SetPasswordActivity extends ToolbarFragmentActivity {
 
     @Override
     public void initFragments() {
-        fragments.add(new SetPasswordFragment());// 0.设置密码
+        fragments.add(new IdentifyingFragment());// 0.设置密码
+        fragments.add(new SetPasswordFragment());// 1.设置密码
+        fragments.add(new ResultFragment());// 2.结果
         super.initFragments();
     }
 
     @Override
     public void initView() {
-        toolbar_title.setText("安全管理");
+        toolbar_title.setText("输入手机号");
         toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

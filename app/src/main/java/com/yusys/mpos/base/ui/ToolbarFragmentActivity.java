@@ -63,12 +63,13 @@ public class ToolbarFragmentActivity extends BaseActivity {
     }
 
 
-    private boolean isInitial = false;// 是否已经初始化,不加这个蹩脚的变量第一次初始化的时候fragment会报空指针
+    private boolean isInitial = false;// 是否已经初始化,不加这个变量第一次初始化的时候fragment会报空指针
 
     /**
      * 显示界面
      */
     public void showFragment(BaseFragment fragment) {
+        hideKeyboard();// 隐藏软键盘
         if (fragments.size() < 1) {
             return;
         }

@@ -18,7 +18,6 @@ import com.yusys.mpos.login.ui.CameraActivity;
 import com.yusys.mpos.main.adapter.FunctionAdapter;
 import com.yusys.mpos.main.adapter.FunctionItem;
 import com.yusys.mpos.pay.ui.LandiActivity;
-import com.yusys.mpos.pay.ui.PaxActivity;
 import com.yusys.mpos.security.ui.SignActivity;
 
 import java.util.ArrayList;
@@ -129,7 +128,6 @@ public class PaymentFragment extends Fragment {
                     redirectTo(LandiActivity.class);
                     break;
                 case 4:// 百富
-                    redirectTo(PaxActivity.class);
                     break;
             }
         }

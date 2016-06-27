@@ -33,7 +33,7 @@
         <TextView
             style="@style/EditText_Base"
             android:gravity="right"
-            android:text="某某某(工号00000000)" />
+            android:text="李刚(工号001)" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Middle">

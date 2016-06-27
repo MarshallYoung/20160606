@@ -14,9 +14,10 @@
             android:text="原密码&#160;&#160;&#160;&#160;" />
 
         <EditText
+            android:id="@+id/edt_old16"
             style="@style/EditText_Base"
-            android:hint="请输入密码"
-            android:inputType="textPassword" />
+            android:hint="请输入"
+            android:maxLength="@integer/pwd_length" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Middle">
@@ -28,8 +29,8 @@
         <EditText
             android:id="@+id/edt_16"
             style="@style/EditText_Base"
-            android:hint="请输入密码"
-            android:inputType="textPassword" />
+            android:hint="请输入"
+            android:maxLength="@integer/pwd_length" />
     </LinearLayout>
 
 
@@ -42,8 +43,8 @@
         <EditText
             android:id="@+id/edt_17"
             style="@style/EditText_Base"
-            android:hint="请确认密码"
-            android:inputType="textPassword" />
+            android:hint="请确认"
+            android:maxLength="@integer/pwd_length" />
     </LinearLayout>
 
     <TextView

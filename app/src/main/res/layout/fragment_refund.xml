@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_credit_card_number"
         style="@style/Cell_Top"
         android:layout_marginTop="20dp">
 
@@ -14,18 +13,25 @@
             style="@style/TextView_Header"
             android:text="卡号" />
 
-        <TextView
+        <EditText
+            android:id="@+id/edt_credit_card"
             style="@style/EditText_Base"
-            android:hint="信用卡卡号" />
+            android:hint="请输入"
+            android:inputType="number"
+            android:maxLength="@integer/card_length" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout
+        android:id="@+id/ll_bank"
+        style="@style/Cell_Middle">
 
         <TextView
             style="@style/TextView_Header"
             android:text="银行" />
 
-        <EditText style="@style/EditText_Base" />
+        <TextView
+            android:id="@+id/tv_bank"
+            style="@style/EditText_Base" />
 
         <View style="@style/Icon_Arrow.Right_Gray" />
     </LinearLayout>
@@ -37,9 +43,11 @@
             android:text="金额" />
 
         <EditText
+            android:id="@+id/edt_amount"
             style="@style/EditText_Base"
             android:hint="不低于10元,免手续费"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="10" />
     </LinearLayout>
 
     <Button

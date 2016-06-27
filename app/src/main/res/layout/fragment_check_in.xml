@@ -8,7 +8,7 @@
 
     <LinearLayout
         style="@style/Cell_Top"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="60dp">
 
         <TextView
             style="@style/TextView_Header"
@@ -17,7 +17,8 @@
         <EditText
             android:id="@+id/edt_name"
             style="@style/EditText_Base"
-            android:hint="请输入姓名" />
+            android:hint="请输入姓名"
+            android:maxLength="8" />
     </LinearLayout>
 
     <LinearLayout style="@style/Cell_Bottom">
@@ -30,7 +31,8 @@
             android:id="@+id/edt_id"
             style="@style/EditText_Base"
             android:hint="请输入身份证号"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="@integer/id_length" />
     </LinearLayout>
 
     <Button

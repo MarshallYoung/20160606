@@ -36,7 +36,9 @@ public class Validator {
     /**
      * 正则表达式：验证身份证
      */
-    public static final String REGEX_ID_CARD = "(^\\d{18}$)|(^\\d{15}$)";
+//    public static final String REGEX_ID_CARD = "(^\\d{18}$)|(^\\d{15}$)";
+
+    public static final String REGEX_ID_CARD = "(\\d{14}[0-9a-zA-Z])|(\\d{17}[0-9a-zA-Z])";
 
     /**
      * 正则表达式：验证URL

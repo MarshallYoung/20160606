@@ -3,7 +3,9 @@ package com.yusys.mpos.register.ui;
 import android.os.Bundle;
 import android.view.View;
 
+import com.yusys.mpos.base.ui.ListFragment;
 import com.yusys.mpos.base.ui.ToolbarFragmentActivity;
+import com.yusys.mpos.security.ui.SetPasswordFragment;
 
 /**
  * 注册界面
@@ -42,7 +44,16 @@ public class RegisterActivity extends ToolbarFragmentActivity {
         fragments.add(new LocationFragment());// 6.登记经营信息
         fragments.add(new ChooseAccountFragment());// 7.选择收款账户
         fragments.add(new SuccessFragment());// 8.提交成功
-        fragments.add(new LocationListFragment());// 9.地址列表
+        ListFragment locationFragment = new ListFragment();
+        locationFragment.mode = 0;
+        fragments.add(locationFragment);// 9.地址列表
+        ListFragment bankFragment = new ListFragment();
+        bankFragment.mode = 1;
+        fragments.add(bankFragment);// 10.银行列表
+        ListFragment cityFragment = new ListFragment();
+        cityFragment.mode = 2;
+        fragments.add(cityFragment);// 11.城市列表
+        fragments.add(new SetPasswordFragment());// 12.设置密码
         super.initFragments();
     }
 
