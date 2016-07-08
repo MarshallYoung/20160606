@@ -11,7 +11,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.AppManager;
+import com.yusys.mpos.base.manager.StackManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,8 +29,7 @@ public class MainActivity extends FragmentActivity {
     private LayoutInflater inflater;
 
     private Class classes[] = {GatheringFragment.class, PaymentFragment.class, MeFragment.class};
-    private int selectors[] = {R.drawable.selector_tab_gathering,
-            R.drawable.selector_tab_payment, R.drawable.selector_tab_me};
+    private int selectors[] = {R.drawable.selector_tab_gathering, R.drawable.selector_tab_payment, R.drawable.selector_tab_me};
     private String titles[] = {"收款", "付款", "我"};
 
     @Override
@@ -38,7 +37,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        AppManager.getInstance().addActivity(this);
+        StackManager.getInstance().addActivity(this);
         inflater = LayoutInflater.from(this);
         initView();
         tabHost.setCurrentTab(0);
@@ -48,7 +47,7 @@ public class MainActivity extends FragmentActivity {
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-        AppManager.getInstance().finishActivity(this);
+        StackManager.getInstance().finishActivity(this);
     }
 
     private void initView() {

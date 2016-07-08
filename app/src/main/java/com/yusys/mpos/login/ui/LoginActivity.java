@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.manager.APKManager;
 import com.yusys.mpos.base.manager.DeviceManager;
-import com.yusys.mpos.base.manager.LogManager;
 import com.yusys.mpos.base.manager.Validator;
 import com.yusys.mpos.base.ui.BaseActivity;
 import com.yusys.mpos.main.ui.MainActivity;
@@ -32,20 +31,20 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class LoginActivity extends BaseActivity {
 
+    private static final String TAG = "LoginActivity";
+
     interface Preferences {
         String FILENAME = "loginpref";
         String REMEMBER_USERNAME = "rememberusername";
         String USERNAME = "username";
     }
 
-    @Bind(R.id.edt_mobile_phone)
-    EditText edt_mobile_phone;
+    @Bind(R.id.edt_phone)
+    EditText edt_phone;
     @Bind(R.id.edt_16)
     EditText edt_16;
     @Bind(R.id.ckb_remember_username)
     CheckBox ckb_remember;
-
-    //    private KeyboardManager keyboardManager;
     private SharedPreferences preferences;
 
     @Override
@@ -57,37 +56,41 @@ public class LoginActivity extends BaseActivity {
         initView();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
     private void initView() {
-        SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("初始化程序...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+        SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        dialog.setCancelable(false);
+        dialog.setTitleText("初始化程序...").show();
+        edt_16.setInputType(0x81);
         if (DeviceManager.haveRoot()) {// 确认是否Root
-            pDialog.cancel();
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("注意")
+            dialog.cancel();
+            SweetAlertDialog wDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+            wDialog.setCancelable(false);
+            wDialog.setTitleText("注意")
                     .setContentText("设备已Root,为了您的资金安全,请使用未Root设备安装app.")
                     .setConfirmText("退出app")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.dismissWithAnimation();
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.cancel();
                             LoginActivity.this.finish();
                         }
                     }).show();
         } else {// 未Root
-            edt_16.setInputType(0x81);
-            pDialog.cancel();
+            dialog.cancel();
             // 是否记住用户名
             Boolean remember = preferences.getBoolean(Preferences.REMEMBER_USERNAME, false);
+            ckb_remember.setChecked(remember);
             if (remember) {// 回显用户名
                 String username = preferences.getString(Preferences.USERNAME, "");
-                edt_mobile_phone.setText(username);
-                ckb_remember.setChecked(true);
+                edt_phone.setText(username);
             }
         }
-        String s = APKManager.getSign(this);
         APKManager.getSingInfo(this);
     }
 
@@ -97,13 +100,12 @@ public class LoginActivity extends BaseActivity {
         Boolean isChecked = ((CheckBox) view).isChecked();
         String username = "";
         if (isChecked) {// 保存用户名
-            username = edt_mobile_phone.getText().toString().trim();
+            username = edt_phone.getText().toString().trim();
         }
         preferences.edit().putBoolean(Preferences.REMEMBER_USERNAME, isChecked).apply();
         preferences.edit().putString(Preferences.USERNAME, username).apply();
     }
 
-    // 注册
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_register)
     void register(View view) {
@@ -111,20 +113,20 @@ public class LoginActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    // 找回密码
+    /**
+     * 找回密码
+     */
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_forget16)
-    void findPassword(View view) {
+    void find16(View view) {
         Intent intent = new Intent(this, SetPasswordActivity.class);
         startActivity(intent);
     }
 
-    // 登录
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_login)
     void login(View view) {
-        hideKeyboard();
-        String phoneNum = edt_mobile_phone.getText().toString().trim();
+        String phoneNum = edt_phone.getText().toString().trim();
         String pwd = edt_16.getText().toString().trim();
         if (APKManager.DEBUG) {// 调试
 
@@ -150,8 +152,6 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(this, "密码错误", Toast.LENGTH_SHORT).show();
             return;
         }
-        String IMEI = DeviceManager.getIMEI(this);
-        LogManager.e("==登录界面==", "设备的IMEI是" + IMEI);// 设备唯一识别码
         Boolean isChecked = ckb_remember.isChecked();
         if (isChecked) {// 保存用户名
             preferences.edit().putBoolean(Preferences.REMEMBER_USERNAME, true).apply();

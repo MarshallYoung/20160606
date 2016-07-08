@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -22,11 +22,11 @@
     </LinearLayout>
 
     <TextView
-        style="@style/TextView_Note_Small"
+        style="@style/Note.Small"
         android:text="请确认读卡器电源已打开\n请点击下方设备连接按钮连接设备" />
 
     <Button
         android:id="@+id/btn_connect_device"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="连接设备" />
 </LinearLayout>

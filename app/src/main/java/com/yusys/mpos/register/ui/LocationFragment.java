@@ -15,7 +15,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.base.ui.BaseFragment;
 import com.yusys.mpos.base.ui.ListFragment;
 
@@ -122,7 +122,7 @@ public class LocationFragment extends BaseFragment {
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }
-            LogManager.e("百度定位", sb.toString());
+            LogUtil.e("百度定位", sb.toString());
             ListFragment fragment = (ListFragment) parentActivity.fragments.get(9);
             if (fragment.array == null) {
                 fragment.array = new ArrayList<>();

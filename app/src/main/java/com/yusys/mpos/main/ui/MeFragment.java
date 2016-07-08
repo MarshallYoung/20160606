@@ -36,7 +36,7 @@ public class MeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (fragmentView == null) {
-            fragmentView = inflater.inflate(R.layout.fragment_personal_info, container, false);
+            fragmentView = inflater.inflate(R.layout.fragment_me, container, false);
             ButterKnife.bind(this, fragmentView);
             toolbar_title.setText("我");
         }

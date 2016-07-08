@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -23,7 +23,7 @@
 
     <LinearLayout
         android:id="@+id/ll_bank"
-        style="@style/Cell_Middle">
+        style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -33,10 +33,10 @@
             android:id="@+id/tv_bank"
             style="@style/EditText_Base" />
 
-        <View style="@style/Icon_Arrow.Right_Gray" />
+        <View style="@style/Icon.Arrow.Gray" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout style="@style/Cell.Bottom">
 
         <TextView
             style="@style/TextView_Header"
@@ -51,12 +51,12 @@
     </LinearLayout>
 
     <Button
-        style="@style/Button_Transparent"
+        style="@style/Button.Transparent"
         android:text="还款说明"
         android:textColor="@color/selector_orange" />
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

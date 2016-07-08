@@ -82,7 +82,7 @@ public class PaymentFragment extends Fragment {
             item.text = texts[i];
             itemList.add(item);
         }
-        FunctionAdapter adapter = new FunctionAdapter(getContext(), itemList);
+        FunctionAdapter adapter = new FunctionAdapter(getActivity(), itemList);
         gv_function.setAdapter(adapter);
         gv_function.setOnItemClickListener(itemClickListener);
     }

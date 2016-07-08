@@ -51,12 +51,6 @@ public class CreditCardNumberFragment extends BaseFragment {
     }
 
     @SuppressWarnings("unused")
-    @OnClick(R.id.ll_credit_card_number)
-    void creditCardNumber(View view) {
-
-    }
-
-    @SuppressWarnings("unused")
     @OnClick(R.id.btn_next_step)
     void nextStep(View view) {
         parentActivity.showFragment(parentActivity.fragments.get(1));

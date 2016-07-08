@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.AppManager;
+import com.yusys.mpos.base.manager.StackManager;
 import com.yusys.mpos.base.ui.BaseActivity;
 import com.yusys.mpos.base.widget.SignBoard;
 
@@ -31,7 +31,7 @@ public class SignActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
         ButterKnife.bind(this);
-        AppManager.getInstance().addActivity(this);
+        StackManager.getInstance().addActivity(this);
         initView();
     }
 
@@ -39,7 +39,7 @@ public class SignActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-        AppManager.getInstance().finishActivity(this);
+        StackManager.getInstance().finishActivity(this);
     }
 
     private void initView() {

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/TextView_Note"
+        style="@style/Note.Top"
         android:maxLines="2"
         android:text="为了不影响审批与结算 \n请安示意图拍照,保持清晰,勿遮挡" />
 
@@ -22,6 +22,6 @@
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

@@ -26,19 +26,16 @@ import java.io.File;
  */
 public class StartActivity extends Activity {
 
-    interface Param {
-        long DURATION_ANIM = 800;// 动画的时长
-    }
+    private static final int DELAY = 800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final View view = View.inflate(this, R.layout.activity_start, null);
+        View view = View.inflate(this, R.layout.activity_start, null);
         setContentView(view);
         // 渐变动画
         AlphaAnimation aa = new AlphaAnimation(0.5f, 1.0f);
-        aa.setDuration(Param.DURATION_ANIM);
+        aa.setDuration(DELAY);
         view.startAnimation(aa);
         aa.setAnimationListener(new AnimationListener() {
             @Override
@@ -57,19 +54,13 @@ public class StartActivity extends Activity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         int cacheVersion = PreferenceHelper.readInt(this, "first_install",
                 "first_install", -1);
         int currentVersion = DeviceManager.getVersionCode();
         if (cacheVersion < currentVersion) {
-            PreferenceHelper.write(this, "first_install", "first_install",
-                    currentVersion);
+            PreferenceHelper.write(this, "first_install", "first_install", currentVersion);
             cleanImageCache();
         }
     }

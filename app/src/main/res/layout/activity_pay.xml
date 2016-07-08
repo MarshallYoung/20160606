@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/btn_bluetooth_list"
-        style="@style/Button_Blue"
+        style="@style/Button.Blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -172,7 +172,7 @@
 
     <Button
         android:id="@+id/btn_landi"
-        style="@style/Button_Blue"
+        style="@style/Button.Blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -180,7 +180,7 @@
 
     <Button
         android:id="@+id/btn_pax"
-        style="@style/Button_Blue"
+        style="@style/Button.Blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

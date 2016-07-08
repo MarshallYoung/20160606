@@ -76,8 +76,6 @@ public class FunctionAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        ImageView imageView;
-        TextView textView;
 
         @Bind(R.id.function_image)
         ImageView function_image;

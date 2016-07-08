@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.base.ui.ToolbarFragmentActivity;
 
 import java.util.Timer;
@@ -28,7 +28,7 @@ public class PayActivity extends ToolbarFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         amount = getIntent().getDoubleExtra("amount", 0);
-        LogManager.e("== Pay ==", amount + "");
+        LogUtil.e("== Pay ==", amount + "");
     }
 
     @Override

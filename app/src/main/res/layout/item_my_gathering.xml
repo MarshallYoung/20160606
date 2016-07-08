@@ -30,11 +30,11 @@
                 android:text="消费" />
 
             <TextView
-                style="@style/TextView_Note_Stroke"
+                style="@style/Tag.Stroke"
                 android:text="交易拒绝" />
 
             <TextView
-                style="@style/TextView_Note_Stroke"
+                style="@style/Tag.Stroke"
                 android:text="失败" />
         </LinearLayout>
 

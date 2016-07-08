@@ -36,8 +36,8 @@ public class APKManager {
             PackageInfo packageinfo = iter.next();
             String packageName = packageinfo.packageName;
             if (packageName.equals(context.getPackageName())) {
-                LogManager.e("==签名信息==", packageinfo.signatures[0].toCharsString());
-                LogManager.e("==签名长度==", String.valueOf(packageinfo.signatures[0].toCharsString().length()));
+                LogUtil.e("==签名信息==", packageinfo.signatures[0].toCharsString());
+                LogUtil.e("==签名长度==", String.valueOf(packageinfo.signatures[0].toCharsString().length()));
                 return packageinfo.signatures[0].toCharsString();
             }
         }
@@ -50,8 +50,10 @@ public class APKManager {
             Signature[] signs = packageInfo.signatures;
             Signature sign = signs[0];
             String signString = sign.toString();
-            LogManager.e("==包信息签名==", signString);
-            LogManager.e("==包信息签名==", sign.toCharsString());
+            String IMEI = DeviceManager.getIMEI(context);
+            LogUtil.e("==包信息签名==", signString);
+            LogUtil.e("==包信息签名==", sign.toCharsString());
+            LogUtil.e("==IMEI==", IMEI);
             parseSignature(sign.toByteArray());
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,10 +66,10 @@ public class APKManager {
             X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
             String pubKey = cert.getPublicKey().toString();
             String signNumber = cert.getSerialNumber().toString();
-            LogManager.e("==signName:==", cert.getSigAlgName());
-            LogManager.e("==pubKey:==", pubKey);
-            LogManager.e("==signNumber==:", signNumber);
-            LogManager.e("==subjectDN:==", cert.getSubjectDN().toString());
+            LogUtil.e("==signName:==", cert.getSigAlgName());
+            LogUtil.e("==pubKey:==", pubKey);
+            LogUtil.e("==signNumber==:", signNumber);
+            LogUtil.e("==subjectDN:==", cert.getSubjectDN().toString());
         } catch (CertificateException e) {
             e.printStackTrace();
         }

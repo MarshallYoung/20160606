@@ -22,9 +22,8 @@ import com.landicorp.robert.comm.api.DeviceInfo;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.BroadcastAPI;
 import com.yusys.mpos.base.YXApplication;
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.base.ui.BaseActivity;
-import com.yusys.mpos.pay.PayAPI;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -95,7 +94,7 @@ public class LandiActivity extends BaseActivity {
         dialog.setTitleText("正在连接设备...");
         dialog.setCancelable(false);
         dialog.show();
-        LogManager.e("==蓝牙地址==", device.getAddress());
+        LogUtil.e("==蓝牙地址==", device.getAddress());
         CommunicationManagerBase.CommunicationMode openMode = CommunicationManagerBase.CommunicationMode.MODE_DUPLEX;
         DeviceInfo info = new DeviceInfo();
         info.setIdentifier(device.getAddress());
@@ -305,7 +304,7 @@ public class LandiActivity extends BaseActivity {
                         + StringUtil.bytesToHexString(cardInfo.getIcTag55Data(),
                         cardInfo.getIcTag55Data().length);
             }
-            LogManager.e("==mPos返回信息==", tString);
+            LogUtil.e("==mPos返回信息==", tString);
         }
 
         @Override

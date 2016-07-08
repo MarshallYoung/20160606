@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.base.manager.StringManager;
 
 import butterknife.Bind;
@@ -99,7 +99,7 @@ public class CameraActivity extends Activity {
     private final Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
         @Override
         public void onShutter() {
-            LogManager.e("==拍照界面==", "shutter");
+            LogUtil.e("==拍照界面==", "shutter");
         }
     };
 
@@ -107,7 +107,7 @@ public class CameraActivity extends Activity {
     private final PictureCallback rawCallBack = new PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-            LogManager.e("==拍照界面==", "raw");
+            LogUtil.e("==拍照界面==", "raw");
         }
     };
 
@@ -116,7 +116,7 @@ public class CameraActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             try {
-                LogManager.e("==拍照界面==", "图片大小是:" + StringManager.convertFileSize(data.length));
+                LogUtil.e("==拍照界面==", "图片大小是:" + StringManager.convertFileSize(data.length));
                 bytes = data;
 //                bundle = new Bundle();
 //                bundle.putByteArray("bytes", data);
@@ -124,7 +124,7 @@ public class CameraActivity extends Activity {
                 btn_confirm.setVisibility(View.VISIBLE);
                 btn_take_photo.setVisibility(View.INVISIBLE);
             } catch (Exception exception) {
-                LogManager.e("==拍照界面==", exception.toString());
+                LogUtil.e("==拍照界面==", exception.toString());
             }
         }
     };

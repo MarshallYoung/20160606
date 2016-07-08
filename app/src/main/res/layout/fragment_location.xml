@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -27,7 +27,7 @@
     </LinearLayout>
 
 
-    <LinearLayout style="@style/Cell_Top">
+    <LinearLayout style="@style/Cell.Top">
 
         <TextView
             style="@style/TextView_Header"
@@ -41,7 +41,7 @@
 
     <LinearLayout
         android:id="@+id/ll_location"
-        style="@style/Cell_Bottom">
+        style="@style/Cell.Bottom">
 
         <TextView
             style="@style/TextView_Header"
@@ -52,14 +52,14 @@
             style="@style/EditText_Base"
             android:ellipsize="end" />
 
-        <View style="@style/Icon_Arrow.Right_Gray" />
+        <View style="@style/Icon.Arrow.Gray" />
     </LinearLayout>
 
     <TextView
-        style="@style/TextView_Note_Small"
+        style="@style/Note.Small"
         android:text="显示电子凭证上的商户名,默认姓名" />
 
-    <LinearLayout style="@style/Cell_Single">
+    <LinearLayout style="@style/Cell.Single">
 
         <TextView
             style="@style/TextView_Header"
@@ -78,6 +78,6 @@
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

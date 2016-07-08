@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        style="@style/TextView_Note"
+        style="@style/Note.Top"
         android:text="如有疑问,请联系代理商" />
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -24,7 +24,7 @@
     </LinearLayout>
 
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -36,7 +36,7 @@
             android:text="李刚(工号001)" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -48,7 +48,7 @@
             android:text="0.5%" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -60,7 +60,7 @@
             android:text="0.3%" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout style="@style/Cell.Bottom">
 
         <TextView
             style="@style/TextView_Header"
@@ -74,6 +74,6 @@
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.yusys.mpos.R;
-import com.yusys.mpos.base.manager.AppManager;
+import com.yusys.mpos.base.manager.StackManager;
 import com.yusys.mpos.base.ui.BaseFragment;
 import com.yusys.mpos.login.ui.LoginActivity;
 
@@ -104,7 +104,7 @@ public class SettingsFragment extends BaseFragment {
                     public void onClick(SweetAlertDialog sDialog) {
                         sDialog.cancel();
                         getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
-                        AppManager.getInstance().finishAllActivity();
+                        StackManager.getInstance().finishAllActivity();
                     }
                 })
                 .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {

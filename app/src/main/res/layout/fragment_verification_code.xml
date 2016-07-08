@@ -52,7 +52,7 @@
 
         <Button
             android:id="@+id/btn_get_verification"
-            style="@style/Button_Transparent"
+            style="@style/Button.Transparent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"

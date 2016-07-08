@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="60dp">
 
         <ImageView
@@ -24,7 +24,7 @@
     </LinearLayout>
 
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout style="@style/Cell.Bottom">
 
         <ImageView
             android:layout_width="@dimen/icon_length"
@@ -43,7 +43,7 @@
 
         <Button
             android:id="@+id/btn_get_identifying"
-            style="@style/Button_Transparent"
+            style="@style/Button.Transparent"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:text="获取验证码" />
@@ -51,6 +51,6 @@
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

@@ -19,7 +19,7 @@ import com.landicorp.android.mpos.newReader.LandiReader;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.BroadcastAPI;
 import com.yusys.mpos.base.YXApplication;
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.pay.ui.ConnectionActivity;
 import com.yusys.mpos.pay.ui.PayActivity;
 
@@ -51,7 +51,6 @@ public class GatheringFragment extends Fragment {
     private double amount;// 金额
     public boolean isConnected = false;// 是否连接
     private BluetoothAdapter bluetoothAdapter;
-
     private LandiReader reader;
 
     /**
@@ -180,7 +179,7 @@ public class GatheringFragment extends Fragment {
             Intent payIntent = new Intent(getActivity(), PayActivity.class);
             payIntent.putExtra("amount", amount);
             startActivity(payIntent);
-            LogManager.e("== 交易金额 ==", "" + amount);
+            LogUtil.e("== 交易金额 ==", "" + amount);
             clear(null);//清理金额
         } else {// 未连接
             toolbar_connectText.setText("未连接");

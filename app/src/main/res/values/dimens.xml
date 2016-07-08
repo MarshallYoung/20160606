@@ -2,19 +2,15 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="icon_length">24dp</dimen>
     <dimen name="icon_margin">5dp</dimen>
-    <!-- 边长 -->
-    <dimen name="length_option_icon">24dp</dimen>
     <!-- 高度 -->
-    <dimen name="height_button">48dp</dimen>
-    <dimen name="height_toolbar">45dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="toolbar_height">45dp</dimen>
     <!-- 字号 -->
-    <dimen name="textsize_button">16sp</dimen>
-    <dimen name="textsize_text">14sp</dimen>
-    <dimen name="textsize_input">14sp</dimen>
-    <dimen name="textsize_option">20sp</dimen>
-    <dimen name="textsize_toolbar_title">18sp</dimen>
-    <dimen name="textsize_toolbar">16sp</dimen>
-    <dimen name="textsize_calculator">30sp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="input_text_size">14sp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="toolbar_title_text_size">18sp</dimen>
+    <dimen name="tag_text_size">12dp</dimen>
     <!-- 间距 -->
     <dimen name="margin_side">10dp</dimen>
     <!-- cell的所有设置

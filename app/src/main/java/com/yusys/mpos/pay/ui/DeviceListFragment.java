@@ -1,5 +1,6 @@
 package com.yusys.mpos.pay.ui;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -22,7 +23,7 @@ import com.landicorp.robert.comm.api.DeviceInfo;
 import com.yusys.mpos.R;
 import com.yusys.mpos.base.BroadcastAPI;
 import com.yusys.mpos.base.YXApplication;
-import com.yusys.mpos.base.manager.LogManager;
+import com.yusys.mpos.base.manager.LogUtil;
 import com.yusys.mpos.base.ui.BaseFragment;
 import com.yusys.mpos.pay.adapter.BluetoothDeviceAdapter;
 
@@ -152,8 +153,8 @@ public class DeviceListFragment extends BaseFragment {
             if (action.equals(BluetoothDevice.ACTION_FOUND)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 //                if (device.getName().startsWith("M35")) {
-                    // 搜索到的不是已经绑定的蓝牙设备
-                    deviceAdapter.addDevice(device);
+                // 搜索到的不是已经绑定的蓝牙设备
+                deviceAdapter.addDevice(device);
 //                }
             } else if (action.equals(android.bluetooth.BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {// 搜索完成
                 task.cancel();
@@ -174,7 +175,7 @@ public class DeviceListFragment extends BaseFragment {
             dialog.setTitleText("连接设备...");
             dialog.setCancelable(false);
             dialog.show();
-            LogManager.e("==蓝牙地址==", device.getAddress());
+            LogUtil.e("==蓝牙地址==", device.getAddress());
             DeviceInfo info = new DeviceInfo();
             info.setIdentifier(device.getAddress());
             info.setName(device.getName());
@@ -183,23 +184,32 @@ public class DeviceListFragment extends BaseFragment {
                     new PublicInterface.ConnectDeviceListener() {
                         @Override
                         public void deviceDisconnect() {
-                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
+                            YXApplication.getInstance().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
                             dialog.cancel();
-                            showDialog(false);
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                showDialog(false);
+                            }
                         }
 
                         @Override
                         public void connectSuccess() {
-                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_CONNECTED));
+                            YXApplication.getInstance().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_CONNECTED));
                             dialog.cancel();
-                            showDialog(true);
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                showDialog(true);
+                            }
                         }
 
                         @Override
                         public void connectFailed(String errorMesg) {
-                            getActivity().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
+                            YXApplication.getInstance().sendBroadcast(new Intent(BroadcastAPI.BLUETOOTH_DISCONNECTED));
                             dialog.cancel();
-                            showDialog(false);
+                            Activity activity = getActivity();
+                            if (activity != null) {
+                                showDialog(false);
+                            }
                         }
                     });
         }

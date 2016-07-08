@@ -11,12 +11,12 @@
 
         <LinearLayout
             android:id="@+id/ll_immediately"
-            style="@style/Cell_Single"
+            style="@style/Cell.Single"
             android:layout_marginTop="20dp">
 
             <View
-                android:layout_width="@dimen/length_option_icon"
-                android:layout_height="@dimen/length_option_icon"
+                android:layout_width="@dimen/icon_length"
+                android:layout_height="@dimen/icon_length"
                 android:layout_margin="10dp"
                 android:background="@drawable/icon_orange_clock" />
 
@@ -34,17 +34,17 @@
         </LinearLayout>
 
         <TextView
-            style="@style/TextView_Note_Small"
+            style="@style/Note.Small"
             android:text="若满足条件,将为您的交易结算默认选择即时到帐" />
 
         <LinearLayout
             android:id="@+id/ll_security"
-            style="@style/Cell_Top"
+            style="@style/Cell.Top"
             android:layout_marginTop="20dp">
 
             <View
-                android:layout_width="@dimen/length_option_icon"
-                android:layout_height="@dimen/length_option_icon"
+                android:layout_width="@dimen/icon_length"
+                android:layout_height="@dimen/icon_length"
                 android:layout_margin="10dp"
                 android:background="@drawable/icon_orange_lock" />
 
@@ -52,16 +52,16 @@
                 style="@style/EditText_Base"
                 android:text="账户安全" />
 
-            <View style="@style/Icon_Arrow.Right_Gray" />
+            <View style="@style/Icon.Arrow.Gray" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_agreements"
-            style="@style/Cell_Bottom">
+            style="@style/Cell.Bottom">
 
             <View
-                android:layout_width="@dimen/length_option_icon"
-                android:layout_height="@dimen/length_option_icon"
+                android:layout_width="@dimen/icon_length"
+                android:layout_height="@dimen/icon_length"
                 android:layout_margin="10dp"
                 android:background="@drawable/icon_orange_agreement" />
 
@@ -69,17 +69,17 @@
                 style="@style/EditText_Base"
                 android:text="查看已确认的电子协议" />
 
-            <View style="@style/Icon_Arrow.Right_Gray" />
+            <View style="@style/Icon.Arrow.Gray" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_exit"
-            style="@style/Cell_Single"
+            style="@style/Cell.Single"
             android:layout_marginTop="20dp">
 
             <View
-                android:layout_width="@dimen/length_option_icon"
-                android:layout_height="@dimen/length_option_icon"
+                android:layout_width="@dimen/icon_length"
+                android:layout_height="@dimen/icon_length"
                 android:layout_margin="10dp"
                 android:background="@drawable/icon_exit" />
 
@@ -87,7 +87,7 @@
                 style="@style/EditText_Base"
                 android:text="安全退出" />
 
-            <View style="@style/Icon_Arrow.Right_Gray" />
+            <View style="@style/Icon.Arrow.Gray" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

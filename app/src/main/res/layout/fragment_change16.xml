@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -20,7 +20,7 @@
             android:maxLength="@integer/pwd_length" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -34,7 +34,7 @@
     </LinearLayout>
 
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout style="@style/Cell.Bottom">
 
         <TextView
             style="@style/TextView_Header"
@@ -48,11 +48,11 @@
     </LinearLayout>
 
     <TextView
-        style="@style/TextView_Note_Small"
+        style="@style/Note.Small"
         android:text="密码由6-16位字母,数字或符号组成" />
 
     <Button
         android:id="@+id/btn_change"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="修改" />
 </LinearLayout>

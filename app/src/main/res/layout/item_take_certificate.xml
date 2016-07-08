@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:background="@color/gray_light"
+            android:contentDescription="@string/app_name"
             android:scaleType="fitXY" />
 
         <ImageButton
@@ -25,6 +26,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/icon_add"
+            android:contentDescription="@string/app_name"
             android:scaleType="fitCenter" />
     </RelativeLayout>
 

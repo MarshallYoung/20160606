@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        style="@style/TextView_Note"
+        style="@style/Note.Top"
         android:maxLines="2"
         android:text="为了保证资金安全 \n需要使用本人的银行账户" />
 
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -25,7 +25,7 @@
             android:hint="请输入" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Middle">
+    <LinearLayout style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -41,7 +41,7 @@
 
     <LinearLayout
         android:id="@+id/ll_bank"
-        style="@style/Cell_Middle">
+        style="@style/Cell.Middle">
 
         <TextView
             style="@style/TextView_Header"
@@ -51,12 +51,12 @@
             android:id="@+id/tv_bank"
             style="@style/EditText_Base" />
 
-        <View style="@style/Icon_Arrow.Right_Gray" />
+        <View style="@style/Icon.Arrow.Gray" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_issue_city"
-        style="@style/Cell_Bottom">
+        style="@style/Cell.Bottom">
 
         <TextView
             style="@style/TextView_Header"
@@ -66,11 +66,11 @@
             android:id="@+id/tv_issue_city"
             style="@style/EditText_Base" />
 
-        <View style="@style/Icon_Arrow.Right_Gray" />
+        <View style="@style/Icon.Arrow.Gray" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_next_step"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="下一步" />
 </LinearLayout>

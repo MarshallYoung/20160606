@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearLayout_Root"
+    style="@style/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_register"
-        style="@style/Button_Transparent"
+        style="@style/Button.Transparent"
         android:layout_gravity="end"
         android:text="@string/register" />
 
     <LinearLayout
-        style="@style/Cell_Top"
+        style="@style/Cell.Top"
         android:layout_marginTop="60dp">
 
         <ImageView
@@ -22,14 +22,14 @@
             android:src="@drawable/icon_mobile_phone" />
 
         <EditText
-            android:id="@+id/edt_mobile_phone"
+            android:id="@+id/edt_phone"
             style="@style/EditText_Base"
             android:hint="手机号"
             android:inputType="phone"
             android:maxLength="@integer/phone_length" />
     </LinearLayout>
 
-    <LinearLayout style="@style/Cell_Bottom">
+    <LinearLayout style="@style/Cell.Bottom">
 
         <ImageView
             android:layout_width="@dimen/icon_length"
@@ -52,12 +52,12 @@
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/Button_Orange"
+        style="@style/Button.Orange"
         android:text="@string/login" />
 
     <Button
         android:id="@+id/btn_forget16"
-        style="@style/Button_Transparent"
+        style="@style/Button.Transparent"
         android:layout_gravity="end"
         android:text="@string/forget_password" />
 </LinearLayout>
